@@ -97,7 +97,7 @@ class SecondScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text('Your Zakat amount is $zakatAmount'),
+                        Text('Your Zakat amount is $zakatAmount $currency'),
                         SizedBox(height: 8.0),
                         Text('This amount is calculated based on your inputs.'),
                       ],

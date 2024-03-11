@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../api/api.dart'; // Import the PricesDisplayPage
-
+import '../manual calculation/prices.dart';
 class ZakatCalculationMethodScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ZakatCalculationMethodScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PricesDisplayPage(),
+                    builder: (context) => GoldSilverEntryScreen(),
                   ),
                 );
               },

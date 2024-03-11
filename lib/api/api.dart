@@ -17,7 +17,7 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
   ];
   double goldPricePerGram = 0.0;
   double silverPricePerGram = 0.0;
-  final String apiKey = 'goldapi-3knmtsltksvyw7-io';
+  final String apiKey = 'goldapi-1b3ndsltnaidg5-io';
 
   @override
   void initState() {
