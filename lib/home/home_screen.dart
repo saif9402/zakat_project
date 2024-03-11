@@ -7,6 +7,7 @@ import '../provider/base.dart';
 import '../provider/user_provider.dart';
 import '../login/login_screen.dart';
 import '../api/api.dart';
+import '../choosing/choosing.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home';
@@ -215,7 +216,7 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => PricesDisplayPage()),
+                          builder: (context) => ZakatCalculationMethodScreen()),
                     );
                   },
                   style: ButtonStyle(
