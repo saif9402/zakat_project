@@ -1,0 +1,16 @@
+{
+  "login": "تسجيل دخول",
+  "email": "البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "dont_have_an_account": "إنشاء حساب جديد",
+  "create_account": "إنشاء حساب",
+  "first_name": "الاسم الأول",
+  "last_name": "اسم العائلة",
+  "user_name": "اسم المستخدم",
+  "already_have_an_account": "هل لديك حساب بالفعل",
+  "loading": "  جاري التحميل...",
+  "welcome_back": "مرحبا بك",
+  "total": "مجموع الزكاة",
+  "how_to_calculate_zakat": "كيف تحسب الزكاة؟",
+  "get_started": "البدء"
+}

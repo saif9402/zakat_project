@@ -1,0 +1,18 @@
+{
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "dont_have_an_account": "Don't have an account?",
+  "create_account": "Create Account",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "user_name": "User Name",
+  "already_have_an_account": "Already have an account?",
+  "loading": "  Loading...",
+  "welcome_back": "Welcome back!",
+  "total": "Total",
+  "how_to_calculate_zakat": "How to calculate Zakat?",
+  "get_started": "Get started"
+
+
+}
