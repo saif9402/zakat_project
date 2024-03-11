@@ -33,7 +33,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
   var formKey = GlobalKey<FormState>();
 
   // Define the gold color
-  final Color goldColor = Color.fromARGB(255, 59, 129, 214);
+  final Color BlueColor = Color.fromARGB(255, 59, 129, 214);
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +50,17 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
               backgroundColor: Colors.transparent,
               title: Text(
                 Locales.string(context, 'login'),
-                style: TextStyle(color: goldColor, fontWeight: FontWeight.bold),
+                style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
               ),
             ),
             body: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                      'assets/images/background.jpg'), // Replace with your actual image file name and path
+                  fit: BoxFit.cover,
+                ),
+              ),
               padding: EdgeInsets.all(12),
               child: Form(
                 key: formKey,
@@ -64,13 +71,13 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: Locales.string(context, 'email'),
-                        labelStyle: TextStyle(color: goldColor),
+                        labelStyle: TextStyle(color: BlueColor),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: goldColor),
+                          borderSide: BorderSide(color: BlueColor),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: goldColor, width: 2),
+                          borderSide: BorderSide(color: BlueColor, width: 2),
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
@@ -95,13 +102,13 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: Locales.string(context, 'password'),
-                        labelStyle: TextStyle(color: goldColor),
+                        labelStyle: TextStyle(color: BlueColor),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: goldColor),
+                          borderSide: BorderSide(color: BlueColor),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: goldColor, width: 2),
+                          borderSide: BorderSide(color: BlueColor, width: 2),
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
@@ -126,7 +133,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                       },
                       style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all<Color>(goldColor),
+                            MaterialStateProperty.all<Color>(BlueColor),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
@@ -148,7 +155,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                         Locales.string(context, 'dont_have_an_account'),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: goldColor, fontWeight: FontWeight.bold),
+                            color: BlueColor, fontWeight: FontWeight.bold),
                       ),
                     )
                   ],
@@ -176,23 +183,20 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
   }
 }
 
-
-
-class LoginViewModel extends BaseViewModel<LoginNavigator>{
-
+class LoginViewModel extends BaseViewModel<LoginNavigator> {
   var firebaseAuth = FirebaseAuth.instance;
-  void login(String email,String password)async{
-    String? message=null;
+  void login(String email, String password) async {
+    String? message = null;
     try {
       navigator?.showLoading(isDismissable: true);
       print('dialog shown');
-      var result = await firebaseAuth.signInWithEmailAndPassword(email: email,
-          password: password);
+      var result = await firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
       // read user from Database
-      var userObj =  await DataBaseUtils.readUser(result.user?.uid ??"");
-      if(userObj==null){
+      var userObj = await DataBaseUtils.readUser(result.user?.uid ?? "");
+      if (userObj == null) {
         message = 'Failed to complete Sign in , please try register again';
-      }else {
+      } else {
         // goto home
         navigator?.gotoHome(userObj);
       }
@@ -202,13 +206,12 @@ class LoginViewModel extends BaseViewModel<LoginNavigator>{
       message = 'something went wrong';
     }
     navigator?.hideDialog();
-    if(message!=null){
+    if (message != null) {
       navigator?.showMessage(message);
     }
   }
 }
 
-abstract class LoginNavigator implements BaseNavigator{
-
+abstract class LoginNavigator implements BaseNavigator {
   void gotoHome(MyUser user);
 }

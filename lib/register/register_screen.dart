@@ -70,6 +70,13 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                 ),
               ),
               body: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                        'assets/images/background.jpg'), // Replace with your actual image file name and path
+                    fit: BoxFit.cover,
+                  ),
+                ),
                 padding: EdgeInsets.all(12),
                 child: Form(
                   key: formKey,
@@ -77,8 +84,10 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      SizedBox(height: 100.0),
                       TextFormField(
-                        decoration: customInputDecoration(Locales.string(context, 'first_name')),
+                        decoration: customInputDecoration(
+                            Locales.string(context, 'first_name')),
                         style: TextStyle(
                             color: Colors
                                 .black), // Text input color changed to black
@@ -88,7 +97,8 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                       ),
                       SizedBox(height: 10),
                       TextFormField(
-                        decoration: customInputDecoration(Locales.string(context, 'last_name')),
+                        decoration: customInputDecoration(
+                            Locales.string(context, 'last_name')),
                         style: TextStyle(
                             color: Colors
                                 .black), // Text input color changed to black
@@ -98,7 +108,8 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                       ),
                       SizedBox(height: 10),
                       TextFormField(
-                        decoration: customInputDecoration(Locales.string(context, 'user_name')),
+                        decoration: customInputDecoration(
+                            Locales.string(context, 'user_name')),
                         style: TextStyle(
                             color: Colors
                                 .black), // Text input color changed to black
@@ -108,7 +119,8 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                       ),
                       SizedBox(height: 10),
                       TextFormField(
-                        decoration: customInputDecoration(Locales.string(context, 'email')),
+                        decoration: customInputDecoration(
+                            Locales.string(context, 'email')),
                         style: TextStyle(
                             color: Colors
                                 .black), // Text input color changed to black
@@ -118,11 +130,10 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                       ),
                       SizedBox(height: 10),
                       TextFormField(
-                        decoration: customInputDecoration(Locales.string(context, 'password')),
-                        style: TextStyle(
-                            color: Colors
-                                .black),
-                        obscureText: true,// Text input color changed to black
+                        decoration: customInputDecoration(
+                            Locales.string(context, 'password')),
+                        style: TextStyle(color: Colors.black),
+                        obscureText: true, // Text input color changed to black
                         onChanged: (text) {
                           password = text;
                         },
@@ -180,7 +191,6 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
   }
 }
 
-
 // provider
 class RegisterViewModel extends BaseViewModel<RegisterNavigator> {
   // Logic- hold Data
@@ -200,7 +210,7 @@ class RegisterViewModel extends BaseViewModel<RegisterNavigator> {
           lName: lastName,
           userName: userName,
           email: email);
-      var task =  await DataBaseUtils.createDBUser(user);
+      var task = await DataBaseUtils.createDBUser(user);
       navigator?.gotoHome(user);
       return;
     } on FirebaseAuthException catch (e) {
@@ -221,7 +231,6 @@ class RegisterViewModel extends BaseViewModel<RegisterNavigator> {
   }
 }
 
-
-abstract class RegisterNavigator extends BaseNavigator{
+abstract class RegisterNavigator extends BaseNavigator {
   void gotoHome(MyUser myUser);
 }
