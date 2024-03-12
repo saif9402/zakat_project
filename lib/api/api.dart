@@ -15,7 +15,9 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
   final List<String> currencies = [
     'USD', 'AUD', 'GBP', 'EUR', 'CHF', 'CAD', 'JPY', 'EGP', 'KWD', 'SAR'
   ];
-  double goldPricePerGram = 0.0;
+  double gold24PricePerGram = 0.0;
+  double gold21PricePerGram = 0.0;
+  double gold18PricePerGram = 0.0;
   double silverPricePerGram = 0.0;
   final String apiKey = 'goldapi-1b3ndsltnaidg5-io';
 
@@ -26,7 +28,7 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
   }
 
   Future<void> fetchPrices() async {
-    await fetchMetalPrice('XAU', (price) => setState(() => goldPricePerGram = price));
+    await fetchMetalPrice('XAU', (price) => setState(() => gold24PricePerGram = price));
     await fetchMetalPrice('XAG', (price) => setState(() => silverPricePerGram = price));
   }
 
@@ -79,8 +81,20 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
               ),
             ),
             PriceCard(
-              title: 'Gold Price Per Gram',
-              price: goldPricePerGram,
+              title: 'Gold 24 carat Price Per Gram',
+              price: gold24PricePerGram,
+              currency: selectedCurrency,
+              imagePath: 'assets/images/gold_logo.png',
+            ),
+            PriceCard(
+              title: 'Gold 21 carat Price Per Gram',
+              price: gold21PricePerGram,
+              currency: selectedCurrency,
+              imagePath: 'assets/images/gold_logo.png',
+            ),
+            PriceCard(
+              title: 'Gold 18 carat Price Per Gram',
+              price: gold18PricePerGram,
               currency: selectedCurrency,
               imagePath: 'assets/images/gold_logo.png',
             ),
@@ -95,7 +109,9 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => GoldCashScreen(
-                      goldPrice: goldPricePerGram,
+                      gold24Price: gold24PricePerGram,
+                      gold21Price: gold21PricePerGram,
+                      gold18Price: gold18PricePerGram,
                       silverPrice: silverPricePerGram,
                       currency: selectedCurrency,
                     ),

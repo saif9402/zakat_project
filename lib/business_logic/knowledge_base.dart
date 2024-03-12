@@ -6,10 +6,14 @@ import '../provider/my_user.dart';
 import '../provider/user_provider.dart';
 
 Future<double> calculateZakat({
-  required double goldWeight,
+  required double gold24Weight,
+  required double gold21Weight,
+  required double gold18Weight,
   required double silverWeight,
   required double cash,
-  required double goldPrice,
+  required double gold24Price,
+  required double gold21Price,
+  required double gold18Price,
   required double silverPrice,
   required double apartments,
   required double investments,
@@ -26,10 +30,22 @@ Future<double> calculateZakat({
   double cashZakat = 0.0;
   double zakatAmount = 0.0;
 
-  //gold:
-  bool x = goldWeight >= 85 ? true : false;
+  //gold 24 carat:
+  bool x = gold24Weight >= 85 ? true : false;
   if(x){
-    goldZakat = (goldWeight * 0.025) * goldPrice;
+    goldZakat = (gold24Weight * 0.025) * gold24Price;
+  }
+
+  //gold 21 carat
+  bool y = gold21Weight >= 97 ? true : false;
+  if(y){
+    goldZakat = (gold21Weight * 0.025) * gold21Price;
+  }
+
+  //gold 18 carat
+  bool z = gold24Weight >= 85 ? true : false;
+  if(z){
+    goldZakat = (gold24Weight * 0.025) * gold18Price;
   }
 
   // silver
@@ -40,7 +56,7 @@ Future<double> calculateZakat({
 
   //cash, investments, apartment, inventory, debts
   double total = cash + apartments + inventory + investments - debts;
-  double totalToGold = total / goldPrice;
+  double totalToGold = total / gold24Price;
   bool l = totalToGold >= 85 ? true : false;
   if(l){
     cashZakat = total * 0.025;

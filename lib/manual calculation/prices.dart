@@ -7,11 +7,15 @@ class GoldSilverEntryScreen extends StatefulWidget {
 }
 
 class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
-  TextEditingController goldController = TextEditingController();
+  TextEditingController gold24Controller = TextEditingController();
+  TextEditingController gold21Controller = TextEditingController();
+  TextEditingController gold18Controller = TextEditingController();
   TextEditingController silverController = TextEditingController();
   TextEditingController currencyController = TextEditingController();
 
-  String? goldErrorText;
+  String? gold24ErrorText;
+  String? gold21ErrorText;
+  String? gold18ErrorText;
   String? silverErrorText;
   String? currencyErrorText;
 
@@ -27,12 +31,32 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
-              controller: goldController,
-              decoration: InputDecoration(labelText: 'Gold *', errorText: goldErrorText),
+              controller: gold24Controller,
+              decoration: InputDecoration(labelText: 'Gold 24 carat *', errorText: gold24ErrorText),
               keyboardType: TextInputType.number,
               onChanged: (value) {
                 setState(() {
-                  goldErrorText = value.isEmpty ? 'Please enter gold value' : null;
+                  gold24ErrorText = value.isEmpty ? 'Please enter gold value' : null;
+                });
+              },
+            ),
+            TextFormField(
+              controller: gold21Controller,
+              decoration: InputDecoration(labelText: 'Gold 21 carat *', errorText: gold21ErrorText),
+              keyboardType: TextInputType.number,
+              onChanged: (value) {
+                setState(() {
+                  gold21ErrorText = value.isEmpty ? 'Please enter gold value' : null;
+                });
+              },
+            ),
+            TextFormField(
+              controller: gold18Controller,
+              decoration: InputDecoration(labelText: 'Gold 18 carat *', errorText: gold18ErrorText),
+              keyboardType: TextInputType.number,
+              onChanged: (value) {
+                setState(() {
+                  gold18ErrorText = value.isEmpty ? 'Please enter gold value' : null;
                 });
               },
             ),
@@ -59,9 +83,14 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
-                if (goldController.text.isEmpty || silverController.text.isEmpty || currencyController.text.isEmpty) {
+                if (gold24Controller.text.isEmpty ||
+                    gold21Controller.text.isEmpty ||
+                    gold18Controller.text.isEmpty ||
+                    silverController.text.isEmpty || currencyController.text.isEmpty) {
                   setState(() {
-                    goldErrorText = goldController.text.isEmpty ? 'Please enter gold value' : null;
+                    gold24ErrorText = gold24Controller.text.isEmpty ? 'Please enter gold value' : null;
+                    gold21ErrorText = gold21Controller.text.isEmpty ? 'Please enter gold value' : null;
+                    gold18ErrorText = gold18Controller.text.isEmpty ? 'Please enter gold value' : null;
                     silverErrorText = silverController.text.isEmpty ? 'Please enter silver value' : null;
                     currencyErrorText = currencyController.text.isEmpty ? 'Please enter currency' : null;
                   });
@@ -71,7 +100,9 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => GoldCashScreen(
-                        goldPrice: double.tryParse(goldController.text) ?? 0.0,
+                        gold24Price: double.tryParse(gold24Controller.text) ?? 0.0,
+                        gold21Price: double.tryParse(gold21Controller.text) ?? 0.0,
+                        gold18Price: double.tryParse(gold18Controller.text) ?? 0.0,
                         silverPrice: double.tryParse(silverController.text) ?? 0.0,
                         currency: currencyController.text,
                       ),

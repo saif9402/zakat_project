@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:my_zakat/business_logic/knowledge_base.dart';
 class SecondScreen extends StatelessWidget {
-  final double goldPrice;
+  final double gold24Price;
+  final double gold21Price;
+  final double gold18Price;
   final double silverPrice;
   final double silverWeight;
-  final double goldWeight;
+  final double gold24Weight;
+  final double gold21Weight;
+  final double gold18Weight;
   final double cash;
   final String currency;
 
   SecondScreen({
     Key? key,
-    required this.goldPrice,
-    required this.goldWeight,
+    required this.gold24Price,
+    required this.gold21Price,
+    required this.gold18Price,
+    required this.gold24Weight,
+    required this.gold21Weight,
+    required this.gold18Weight,
     required this.cash,
     required this.silverWeight,
     required this.silverPrice,
@@ -75,10 +83,14 @@ class SecondScreen extends StatelessWidget {
                 
 
                 double zakatAmount = await calculateZakat(
-                  goldWeight: goldWeight,
+                  gold24Weight: gold24Weight,
+                  gold21Weight: gold21Weight,
+                  gold18Weight: gold18Weight,
                   silverWeight: silverWeight,
                   cash: cash,
-                  goldPrice: goldPrice,
+                  gold24Price: gold24Price,
+                  gold21Price: gold21Price,
+                  gold18Price: gold18Price,
                   silverPrice: silverPrice,
                   currency: currency,
                   apartments: apart,
