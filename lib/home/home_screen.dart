@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:my_zakat/business_logic/knowledge_base.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:my_zakat/provider/my_user.dart';
@@ -18,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
     implements HomeNavigator {
-  final Color blueColor = Color.fromARGB(172, 107, 184, 251);
+  // final Color blueColor = Color.fromARGB(172, 107, 184, 251);
   final Color buttonColor = Color.fromARGB(255, 22, 92, 177);
 
   @override
@@ -79,14 +80,13 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
                 Card(
                   margin: EdgeInsets.only(top: 190.0),
                   elevation: 1,
-                  color: blueColor,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Welcome back!',
+                          Locales.string(context, 'welcome_back'),
                           style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -94,12 +94,12 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
                         ),
                         SizedBox(height: 8),
                         Text(
-                          'Mr. ${currentUser?.fName} ${currentUser?.lName}',
+                          '${Locales.string(context, 'mr')} ${currentUser?.fName} ${currentUser?.lName}',
                           style: TextStyle(fontSize: 18),
                         ),
                         SizedBox(height: 8),
                         Text(
-                          'Total : ${currentUser?.total_zakat.toStringAsFixed(2)}',
+                          '${Locales.string(context, 'total')}: ${currentUser?.total_zakat.toStringAsFixed(2)}',
                           style: TextStyle(fontSize: 18),
                         ),
                       ],
@@ -226,7 +226,7 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
                         Colors.white), // Set the text color
                   ),
                   child: Text(
-                    'Calculate Zakat',
+                    Locales.string(context, 'calculate_zakat'),
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

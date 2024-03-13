@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 
 import '../business_logic/first_screen.dart';
 
@@ -10,7 +11,7 @@ class PricesDisplayPage extends StatefulWidget {
 
 class _PricesDisplayPageState extends State<PricesDisplayPage> {
 
-  String? selectedCountry;
+  String? selectedCountry = "Egypt";
   final _formKey = GlobalKey<FormState>();
   late String _currencyController = '';
   late String _gold24Controller = '';
@@ -22,6 +23,20 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
   @override
   void initState() {
     super.initState();
+    fetchCountryItems();
+  }
+
+  Future<void> fetchCountryItems() async {
+    final doc = await FirebaseFirestore.instance.collection('metalPrices').doc(selectedCountry).get();
+    final result = doc.data()!;
+    setState(() {
+      _currencyController = result['currency'];
+      _gold24Controller = result['gold_24'];
+      _gold22Controller = result['gold_22'];
+      _gold21Controller = result['gold_21'];
+      _gold18Controller = result['gold_18'];
+      _silverController = result['silver'];
+    });
 
   }
 
@@ -44,10 +59,10 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
                   child: Text(doc.id),
                 )
                 ).toList();
-                String? val = countryItems[0].value;
+                String? val = "Egypt";
                 selectedCountry = val;
                 return DropdownButtonFormField<String>(
-                  decoration: InputDecoration(labelText: 'Select a country'),
+                  decoration: InputDecoration(labelText: Locales.string(context, "select_country")),
                   items: countryItems,
                   onChanged: (value) async {
                     final docSnapshot = await FirebaseFirestore.instance.collection('metalPrices').doc(value).get();
@@ -67,31 +82,31 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
               },
             ),
             PriceCard(
-              title: 'Gold 24 carat Price Per Gram',
+              title: Locales.string(context, "gold_24_per_gram"),
               price: _gold24Controller,
               currency: _currencyController,
               imagePath: 'assets/images/gold_logo.png',
             ),
             PriceCard(
-              title: 'Gold 22 carat Price Per Gram',
+              title: Locales.string(context, "gold_22_per_gram"),
               price: _gold22Controller,
               currency: _currencyController,
               imagePath: 'assets/images/gold_logo.png',
             ),
             PriceCard(
-              title: 'Gold 21 carat Price Per Gram',
+              title: Locales.string(context, "gold_21_per_gram"),
               price: _gold21Controller,
               currency: _currencyController,
               imagePath: 'assets/images/gold_logo.png',
             ),
             PriceCard(
-              title: 'Gold 18 carat Price Per Gram',
+              title: Locales.string(context, "gold_18_per_gram"),
               price: _gold18Controller,
               currency: _currencyController,
               imagePath: 'assets/images/gold_logo.png',
             ),
             PriceCard(
-              title: 'Silver Price Per Gram',
+              title: Locales.string(context, "silver_per_gram"),
               price: _silverController,
               currency: _currencyController,
               imagePath: 'assets/images/sliver_logo.png',
@@ -111,7 +126,9 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
                   ),
                 );
               },
-              child: Text('Go to Calculator'),
+              child: Text(
+                Locales.string(context, "go_to_calculator")
+              ),
             ),
           ],
         ),

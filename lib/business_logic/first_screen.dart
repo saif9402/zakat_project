@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'second_screen.dart'; // Import the second screen
 
 class GoldCashScreen extends StatefulWidget {
@@ -45,45 +46,45 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
               TextFormField(
                 controller: gold24WeightController,
                 decoration: InputDecoration(
-                  labelText: 'Gold 24 carat',
-                  hintText: 'Enter gold weight (leave empty if not applicable)',
-                  helperText: 'Minimum 85 grams',
+                  labelText: Locales.string(context, 'gold_24_2'),
+                  // hintText: 'Enter gold weight (leave empty if not applicable)',
+                  helperText: Locales.string(context, 'minimum_85_gram'),
                 ),
                 keyboardType: TextInputType.number,
               ),
               TextFormField(
                 controller: gold22WeightController,
                 decoration: InputDecoration(
-                  labelText: 'Gold 22 carat',
-                  hintText: 'Enter gold weight (leave empty if not applicable)',
-                  helperText: 'Minimum 92 grams',
+                  labelText: Locales.string(context, 'gold_22_2'),
+                  // hintText: 'Enter gold weight (leave empty if not applicable)',
+                  helperText: Locales.string(context, 'minimum_92_gram'),
                 ),
                 keyboardType: TextInputType.number,
               ),
               TextFormField(
                 controller: gold21WeightController,
                 decoration: InputDecoration(
-                  labelText: 'Gold 21 carat',
-                  hintText: 'Enter gold weight (leave empty if not applicable)',
-                  helperText: 'Minimum 97 grams',
+                  labelText: Locales.string(context, 'gold_21_2'),
+                  // hintText: 'Enter gold weight (leave empty if not applicable)',
+                  helperText: Locales.string(context, 'minimum_97_gram'),
                 ),
                 keyboardType: TextInputType.number,
               ),
               TextFormField(
                 controller: gold18WeightController,
                 decoration: InputDecoration(
-                  labelText: 'Gold 18 carat',
-                  hintText: 'Enter gold weight (leave empty if not applicable)',
-                  helperText: 'Minimum 113 grams',
+                  labelText: Locales.string(context, 'gold_18_2'),
+                  // hintText: 'Enter gold weight (leave empty if not applicable)',
+                  helperText: Locales.string(context, 'minimum_113_gram'),
                 ),
                 keyboardType: TextInputType.number,
               ),
               TextFormField(
                 controller: silverWeightController,
                 decoration: InputDecoration(
-                  labelText: 'Silver',
-                  hintText: 'Enter silver weight (leave empty if not applicable)',
-                  helperText: 'Minimum 595 grams',
+                  labelText: Locales.string(context, 'silver_2'),
+                  // hintText: 'Enter silver weight (leave empty if not applicable)',
+                  helperText: Locales.string(context, 'minimum_595_gram'),
                 ),
                 keyboardType: TextInputType.number,
               ),
@@ -91,8 +92,8 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
               TextFormField(
                 controller: cashController,
                 decoration: InputDecoration(
-                    labelText: 'Cash',
-                    hintText: 'Enter cash (leave empty if not applicable)'
+                    labelText: Locales.string(context, 'cash'),
+                    // hintText: 'Enter cash (leave empty if not applicable)'
                 ),
 
                 keyboardType: TextInputType.number,
@@ -144,7 +145,9 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
                       (silverWeight<595 && silverWeightController.text.isNotEmpty)){
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Please enter valid weights.'),
+                        content: Text(
+                          Locales.string(context, 'please_enter_valid_weight')
+                        ),
                       ),
                     );
                   }
@@ -173,7 +176,9 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
                     );
                   }
                 },
-                child: Text('Next'),
+                child: Text(
+                  Locales.string(context, 'next')
+                ),
               ),
             ],
           ),

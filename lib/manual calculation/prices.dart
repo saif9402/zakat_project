@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import '../business_logic/first_screen.dart'; // Import the GoldCashScreen
 
 class GoldSilverEntryScreen extends StatefulWidget {
@@ -34,61 +35,61 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
           children: [
             TextFormField(
               controller: gold24Controller,
-              decoration: InputDecoration(labelText: 'Gold 24 carat *', errorText: gold24ErrorText),
+              decoration: InputDecoration(labelText: Locales.string(context, 'gold_24'), errorText: gold24ErrorText),
               keyboardType: TextInputType.number,
               onChanged: (value) {
                 setState(() {
-                  gold24ErrorText = value.isEmpty ? 'Please enter gold value' : null;
+                  gold24ErrorText = value.isEmpty ? Locales.string(context, 'please_enter_gold_value') : null;
                 });
               },
             ),
             TextFormField(
               controller: gold22Controller,
-              decoration: InputDecoration(labelText: 'Gold 22 carat *', errorText: gold22ErrorText),
+              decoration: InputDecoration(labelText: Locales.string(context, 'gold_22'), errorText: gold22ErrorText),
               keyboardType: TextInputType.number,
               onChanged: (value) {
                 setState(() {
-                  gold22ErrorText = value.isEmpty ? 'Please enter gold value' : null;
+                  gold22ErrorText = value.isEmpty ? Locales.string(context, 'please_enter_gold_value') : null;
                 });
               },
             ),
             TextFormField(
               controller: gold21Controller,
-              decoration: InputDecoration(labelText: 'Gold 21 carat *', errorText: gold21ErrorText),
+              decoration: InputDecoration(labelText: Locales.string(context, 'gold_21'), errorText: gold21ErrorText),
               keyboardType: TextInputType.number,
               onChanged: (value) {
                 setState(() {
-                  gold21ErrorText = value.isEmpty ? 'Please enter gold value' : null;
+                  gold21ErrorText = value.isEmpty ? Locales.string(context, 'please_enter_gold_value') : null;
                 });
               },
             ),
             TextFormField(
               controller: gold18Controller,
-              decoration: InputDecoration(labelText: 'Gold 18 carat *', errorText: gold18ErrorText),
+              decoration: InputDecoration(labelText: Locales.string(context, 'gold_18'), errorText: gold18ErrorText),
               keyboardType: TextInputType.number,
               onChanged: (value) {
                 setState(() {
-                  gold18ErrorText = value.isEmpty ? 'Please enter gold value' : null;
+                  gold18ErrorText = value.isEmpty ? Locales.string(context, 'please_enter_gold_value') : null;
                 });
               },
             ),
             TextFormField(
               controller: silverController,
-              decoration: InputDecoration(labelText: 'Silver *', errorText: silverErrorText),
+              decoration: InputDecoration(labelText: Locales.string(context, 'silver'), errorText: silverErrorText),
               keyboardType: TextInputType.number,
               onChanged: (value) {
                 setState(() {
-                  silverErrorText = value.isEmpty ? 'Please enter silver value' : null;
+                  silverErrorText = value.isEmpty ? Locales.string(context, 'please_enter_silver_value') : null;
                 });
               },
             ),
             TextFormField(
               controller: currencyController,
-              decoration: InputDecoration(labelText: 'Currency *', errorText: currencyErrorText),
+              decoration: InputDecoration(labelText: Locales.string(context, 'currency'), errorText: currencyErrorText),
               keyboardType: TextInputType.text,
               onChanged: (value) {
                 setState(() {
-                  currencyErrorText = value.isEmpty ? 'Please enter currency' : null;
+                  currencyErrorText = value.isEmpty ? Locales.string(context, 'please_enter_currency') : null;
                 });
               },
             ),
@@ -101,11 +102,11 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                     gold18Controller.text.isEmpty ||
                     silverController.text.isEmpty || currencyController.text.isEmpty) {
                   setState(() {
-                    gold24ErrorText = gold24Controller.text.isEmpty ? 'Please enter gold value' : null;
-                    gold21ErrorText = gold21Controller.text.isEmpty ? 'Please enter gold value' : null;
-                    gold18ErrorText = gold18Controller.text.isEmpty ? 'Please enter gold value' : null;
-                    silverErrorText = silverController.text.isEmpty ? 'Please enter silver value' : null;
-                    currencyErrorText = currencyController.text.isEmpty ? 'Please enter currency' : null;
+                    gold24ErrorText = gold24Controller.text.isEmpty ? Locales.string(context, 'please_enter_gold_value') : null;
+                    gold21ErrorText = gold21Controller.text.isEmpty ? Locales.string(context, 'please_enter_gold_value') : null;
+                    gold18ErrorText = gold18Controller.text.isEmpty ? Locales.string(context, 'please_enter_gold_value') : null;
+                    silverErrorText = silverController.text.isEmpty ? Locales.string(context, 'please_enter_silver_value') : null;
+                    currencyErrorText = currencyController.text.isEmpty ? Locales.string(context, 'please_enter_currency') : null;
                   });
                 } else {
                   // Navigate to the GoldCashScreen
@@ -124,7 +125,9 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                   );
                 }
               },
-              child: Text('Next'),
+              child: Text(
+                Locales.string(context, 'next')
+              ),
             ),
           ],
         ),

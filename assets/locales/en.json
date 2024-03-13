@@ -9,15 +9,62 @@
   "user_name": "User Name",
   "already_have_an_account": "Already have an account?",
   "loading": "  Loading...",
-  "welcome_back": "Welcome back!",
-  "total": "Total",
   "how_to_calculate_zakat": "How to calculate Zakat?",
 
   "get_started": "Get started",
   "select_language": "Select language",
   "language_screen_text": "Discover the importance and principles of zakat",
 
-  "welcome_back": "Welcome back"
+  "welcome_back": "Welcome back",
+  "mr": "Mr.",
+  "total": "Total",
+  "calculate_zakat": "Calculate Zakat",
 
+  "automatic": "Automatic",
+  "manual": "Manual",
+
+  "gold_24": "Gold 24 carat *",
+  "gold_22": "Gold 22 carat *",
+  "gold_21": "Gold 21 carat *",
+  "gold_18": "Gold 18 carat *",
+  "silver": "Silver *",
+  "currency": "Currency *",
+  "next": "Next",
+
+  "please_enter_gold_value": "Please enter gold value",
+  "please_enter_silver_value": "Please enter silver value",
+  "please_enter_currency": "Please enter currency",
+
+  "gold_24_2": "Gold 24 carat",
+  "gold_22_2": "Gold 22 carat",
+  "gold_21_2": "Gold 21 carat",
+  "gold_18_2": "Gold 18 carat",
+  "silver_2": "Silver",
+  "minimum_85_gram": "Minimum 85 grams" ,
+  "minimum_92_gram": "Minimum 92 grams",
+  "minimum_97_gram": "Minimum 97 grams",
+  "minimum_113_gram": "Minimum 113 grams",
+  "minimum_595_gram": "Minimum 595 grams",
+  "cash": "Cash",
+  "please_enter_valid_weight": "Please enter valid weights.",
+
+  "apartments": "Apartments",
+  "investment": "Investment",
+  "inventory": "Inventory",
+  "debts": "Debts",
+  "calculate": "Calculate",
+
+  "zakat_amount": "Total zakat amount",
+  "your_zakat_amount_is": "Your zakat amount is ",
+  "this_amount": "This amount is calculated based on your inputs.",
+  "ok": "ok",
+
+  "select_country": "Select country",
+  "gold_24_per_gram": "Gold 24 carat Price Per Gram",
+  "gold_22_per_gram": "Gold 22 carat Price Per Gram",
+  "gold_21_per_gram": "Gold 21 carat Price Per Gram",
+  "gold_18_per_gram": "Gold 18 carat Price Per Gram",
+  "silver_per_gram": "Silver Price Per Gram",
+  "go_to_calculator": "Go to calculator"
 
 }

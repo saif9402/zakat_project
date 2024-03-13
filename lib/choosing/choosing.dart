@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import '../api/api.dart'; // Import the PricesDisplayPage
 import '../manual calculation/prices.dart';
 class ZakatCalculationMethodScreen extends StatelessWidget {
@@ -26,7 +27,9 @@ class ZakatCalculationMethodScreen extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('Manual Calculation'),
+              child: Text(
+                Locales.string(context, 'manual')
+              ),
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
@@ -39,7 +42,9 @@ class ZakatCalculationMethodScreen extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('Automatic Calculation'),
+              child: Text(
+                  Locales.string(context, 'automatic')
+              ),
             ),
           ],
         ),

@@ -9,13 +9,64 @@
   "user_name": "اسم المستخدم",
   "already_have_an_account": "هل لديك حساب بالفعل",
   "loading": "  جاري التحميل...",
-  "welcome_back": "مرحبا بك",
-  "total": "مجموع الزكاة",
   "how_to_calculate_zakat": "كيف تحسب الزكاة؟",
 
   "get_started": "البدء",
   "select_language": "اختر اللغة",
   "language_screen_text": "اكتشف أهمية ومبادئ الزكاة",
 
-  "welcome_back": "مرحبا بعودتك"
+  "welcome_back": "مرحبا بعودتك",
+  "mr": "أ.",
+  "total": "المجموع",
+  "calculate_zakat": "احسب الزكاة",
+
+  "automatic": "تلقائيًا",
+  "manual": "يدويًا",
+
+  "gold_24": "دهب عيار 24 *",
+  "gold_22": "دهب عيار 22 *",
+  "gold_21": "دهب عيار 21 *",
+  "gold_18": "دهب عيار 18 *",
+  "silver": "الفضة *",
+  "currency": "العملة *",
+  "next": "التالي",
+
+  "please_enter_gold_value": "أدخل قيمة الدهب",
+  "please_enter_silver_value": "أدخل قيمة الفضة",
+  "please_enter_currency": "أدخل العملة",
+
+  "gold_24_2": "دهب عيار 24",
+  "gold_22_2": "دهب عيار 22",
+  "gold_21_2": "دهب عيار 21",
+  "gold_18_2": "دهب عيار 18",
+  "silver_2": "الفضة",
+  "minimum_85_gram": "لا يقل عن 85 جرام" ,
+  "minimum_92_gram": "لا يقل عن 92 جرام",
+  "minimum_97_gram": "لا يقل عن 97 جرام",
+  "minimum_113_gram": "لا يقل عن 113 جرام",
+  "minimum_595_gram": "لا يقل عن 595 جرام",
+  "cash": "النقد",
+  "please_enter_valid_weight": "أدخل أوزان صحيحة",
+
+  "apartments": "عقارات",
+  "investment": "استثمارات",
+  "inventory": "بضاعة",
+  "debts": "ديون",
+  "calculate": "احسب",
+
+  "zakat_amount": "مجموع الزكاة",
+  "your_zakat_amount_is": "زكاتك : ",
+  "this_amount": "هذه النتيجة تمت حسابها بناءً على مدخلاتك",
+  "ok": "حسنًا",
+
+  "select_country": "اختر الدولة",
+  "gold_24_per_gram": "جرام الدهب عيار 24",
+  "gold_22_per_gram": "جرام الدهب عيار 22",
+  "gold_21_per_gram": "جرام الدهب عيار 21",
+  "gold_18_per_gram": "جرام الدهب عيار 18",
+  "silver_per_gram": "جرام الفضة",
+  "go_to_calculator": "انتقل إلى الحاسبة"
+
+
+
 }

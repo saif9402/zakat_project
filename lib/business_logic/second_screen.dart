@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:my_zakat/business_logic/knowledge_base.dart';
 class SecondScreen extends StatelessWidget {
   final double gold24Price;
@@ -50,28 +51,28 @@ class SecondScreen extends StatelessWidget {
           children: [
             TextFormField(
               controller: apartmentsController,
-              decoration: InputDecoration(labelText: 'Apartments'),
+              decoration: InputDecoration(labelText: Locales.string(context, 'apartments')),
               keyboardType: TextInputType.number,
               // Add logic to handle silver input
             ),
             SizedBox(height: 16.0),
             TextFormField(
               controller: investmentController,
-              decoration: InputDecoration(labelText: 'Investment'),
+              decoration: InputDecoration(labelText: Locales.string(context, 'investment')),
               keyboardType: TextInputType.number,
               // Add logic to handle investment input
             ),
             SizedBox(height: 16.0),
             TextFormField(
               controller: inventoryController,
-              decoration: InputDecoration(labelText: 'Inventory'),
+              decoration: InputDecoration(labelText: Locales.string(context, 'inventory')),
               keyboardType: TextInputType.number,
               // Add logic to handle inventory input
             ),
             SizedBox(height: 16.0),
             TextFormField(
               controller: debtsController,
-              decoration: InputDecoration(labelText: 'Debts'),
+              decoration: InputDecoration(labelText: Locales.string(context, 'Debts')),
               keyboardType: TextInputType.number,
               // Add logic to handle debts input
             ),
@@ -110,14 +111,18 @@ class SecondScreen extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text('Zakat Amount'),
+                    title: Text(
+                      Locales.string(context, 'zakat_amount')
+                    ),
                     content: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text('Your Zakat amount is $zakatAmount $currency'),
+                        Text('${Locales.string(context, 'your_zakat_amount_is')} $zakatAmount $currency'),
                         SizedBox(height: 8.0),
-                        Text('This amount is calculated based on your inputs.'),
+                        Text(
+                          Locales.string(context, 'this_amount')
+                        ),
                       ],
                     ),
                     actions: [
@@ -125,13 +130,17 @@ class SecondScreen extends StatelessWidget {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text('OK'),
+                        child: Text(
+                          Locales.string(context, 'ok')
+                        ),
                       ),
                     ],
                   ),
                 );
               },
-              child: Text('Calculate'),
+              child: Text(
+                Locales.string(context, 'calculate')
+              ),
             ),
           ],
         ),
