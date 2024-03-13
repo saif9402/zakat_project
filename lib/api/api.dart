@@ -1,9 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import '../business_logic/first_screen.dart';
 
-import '../business_logic/first_screen.dart'; // Make sure this import points to where your GoldCashScreen is located.
+import '../business_logic/first_screen.dart';
 
 class PricesDisplayPage extends StatefulWidget {
   @override
@@ -11,40 +9,20 @@ class PricesDisplayPage extends StatefulWidget {
 }
 
 class _PricesDisplayPageState extends State<PricesDisplayPage> {
-  String selectedCurrency = 'USD';
-  final List<String> currencies = [
-    'USD', 'AUD', 'GBP', 'EUR', 'CHF', 'CAD', 'JPY', 'EGP', 'KWD', 'SAR'
-  ];
-  double gold24PricePerGram = 0.0;
-  double gold21PricePerGram = 0.0;
-  double gold18PricePerGram = 0.0;
-  double silverPricePerGram = 0.0;
-  final String apiKey = 'goldapi-1b3ndsltnaidg5-io';
+
+  String? selectedCountry;
+  final _formKey = GlobalKey<FormState>();
+  late String _currencyController = '';
+  late String _gold24Controller = '';
+  late String _gold22Controller = '';
+  late String _gold21Controller = '';
+  late String _gold18Controller = '';
+  late String _silverController = '';
 
   @override
   void initState() {
     super.initState();
-    fetchPrices();
-  }
 
-  Future<void> fetchPrices() async {
-    await fetchMetalPrice('XAU', (price) => setState(() => gold24PricePerGram = price));
-    await fetchMetalPrice('XAG', (price) => setState(() => silverPricePerGram = price));
-  }
-
-  Future<void> fetchMetalPrice(String metal, Function(double) onSuccess) async {
-    String url = 'https://www.goldapi.io/api/$metal/$selectedCurrency';
-    try {
-      var response = await http.get(Uri.parse(url), headers: {"x-access-token": apiKey});
-      if (response.statusCode == 200) {
-        var data = json.decode(response.body);
-        onSuccess(data['price_gram_24k']);
-      } else {
-        print('Failed to load price for $metal. Status code: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error fetching price for $metal: $e');
-    }
   }
 
   @override
@@ -56,52 +34,66 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: DropdownButtonFormField<String>(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  filled: true,
-                  fillColor: Colors.white,
-                  labelText: 'Choose Your Currency',
-                ),
-                value: selectedCurrency,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    selectedCurrency = newValue!;
-                    fetchPrices();
-                  });
-                },
-                items: currencies.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
+            FutureBuilder<QuerySnapshot>(
+              future: FirebaseFirestore.instance.collection('metalPrices').get(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) return CircularProgressIndicator();
+                List<DropdownMenuItem<String>> countryItems = snapshot.data!.docs
+                    .map( (doc) => DropdownMenuItem(
+                  value: doc.id,
+                  child: Text(doc.id),
+                )
+                ).toList();
+                String? val = countryItems[0].value;
+                selectedCountry = val;
+                return DropdownButtonFormField<String>(
+                  decoration: InputDecoration(labelText: 'Select a country'),
+                  items: countryItems,
+                  onChanged: (value) async {
+                    final docSnapshot = await FirebaseFirestore.instance.collection('metalPrices').doc(value).get();
+                    final data = docSnapshot.data()!;
+                    setState(() {
+                      selectedCountry = value;
+                      _currencyController = data['currency'];
+                      _gold24Controller = data['gold_24'];
+                      _gold22Controller = data['gold_22'];
+                      _gold21Controller = data['gold_21'];
+                      _gold18Controller = data['gold_18'];
+                      _silverController = data['silver'];
+                    });
+                  },
+                  value: selectedCountry,
+                );
+              },
             ),
             PriceCard(
               title: 'Gold 24 carat Price Per Gram',
-              price: gold24PricePerGram,
-              currency: selectedCurrency,
+              price: _gold24Controller,
+              currency: _currencyController,
+              imagePath: 'assets/images/gold_logo.png',
+            ),
+            PriceCard(
+              title: 'Gold 22 carat Price Per Gram',
+              price: _gold22Controller,
+              currency: _currencyController,
               imagePath: 'assets/images/gold_logo.png',
             ),
             PriceCard(
               title: 'Gold 21 carat Price Per Gram',
-              price: gold21PricePerGram,
-              currency: selectedCurrency,
+              price: _gold21Controller,
+              currency: _currencyController,
               imagePath: 'assets/images/gold_logo.png',
             ),
             PriceCard(
               title: 'Gold 18 carat Price Per Gram',
-              price: gold18PricePerGram,
-              currency: selectedCurrency,
+              price: _gold18Controller,
+              currency: _currencyController,
               imagePath: 'assets/images/gold_logo.png',
             ),
             PriceCard(
               title: 'Silver Price Per Gram',
-              price: silverPricePerGram,
-              currency: selectedCurrency,
+              price: _silverController,
+              currency: _currencyController,
               imagePath: 'assets/images/sliver_logo.png',
             ),
             ElevatedButton(
@@ -109,11 +101,12 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => GoldCashScreen(
-                      gold24Price: gold24PricePerGram,
-                      gold21Price: gold21PricePerGram,
-                      gold18Price: gold18PricePerGram,
-                      silverPrice: silverPricePerGram,
-                      currency: selectedCurrency,
+                      gold24Price: double.parse(_gold24Controller),
+                      gold22Price: double.parse(_gold22Controller),
+                      gold21Price: double.parse(_gold21Controller),
+                      gold18Price: double.parse(_gold18Controller),
+                      silverPrice: double.parse(_silverController),
+                      currency: _currencyController,
                     ),
                   ),
                 );
@@ -129,7 +122,7 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
 
 class PriceCard extends StatelessWidget {
   final String title;
-  final double price;
+  final String price;
   final String currency;
   final String imagePath;
 

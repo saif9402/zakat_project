@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
 import '../database_utils.dart';
 import '../provider/base.dart';
 import '../home/home_screen.dart';
@@ -26,6 +27,12 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
   void initState() {
     super.initState();
     viewModel.navigator = this;
+
+    // Make the navigation bar transparent
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.transparent, // Set navigation bar color to transparent
+      statusBarColor: Colors.transparent, // Set status bar color to transparent
+    ));
   }
 
   String email = '';
@@ -44,20 +51,12 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
           Container(color: Colors.white),
           Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: AppBar(
-              centerTitle: true,
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              title: Text(
-                Locales.string(context, 'login'),
-                style: TextStyle(color: BlueColor, fontWeight: FontWeight.bold),
-              ),
-            ),
+
             body: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                      'assets/images/background.jpg'), // Replace with your actual image file name and path
+                      'assets/images/background1.png'), // Replace with your actual image file name and path
                   fit: BoxFit.cover,
                 ),
               ),
@@ -71,14 +70,14 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: Locales.string(context, 'email'),
-                        labelStyle: TextStyle(color: BlueColor),
+                        labelStyle: TextStyle(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: BlueColor),
-                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: BlueColor, width: 2),
-                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.white, width: 1),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                       ),
                       onChanged: (text) {
@@ -102,14 +101,14 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                     TextFormField(
                       decoration: InputDecoration(
                         labelText: Locales.string(context, 'password'),
-                        labelStyle: TextStyle(color: BlueColor),
+                        labelStyle: TextStyle(color: Colors.white),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: BlueColor),
-                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: BlueColor, width: 2),
-                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.white, width: 1),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                       ),
                       obscureText: true,
@@ -133,7 +132,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                       },
                       style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all<Color>(BlueColor),
+                            MaterialStateProperty.all<Color>(Colors.black),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
@@ -155,7 +154,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                         Locales.string(context, 'dont_have_an_account'),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: BlueColor, fontWeight: FontWeight.bold),
+                            color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     )
                   ],

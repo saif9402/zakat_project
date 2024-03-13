@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import '../login/login_screen.dart';
@@ -37,6 +36,14 @@ class _LanguageScreenState extends State<LanguageScreen> {
     return Scaffold(
       body: Stack(
         children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/background.png'), // Change path to your image file
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -47,13 +54,6 @@ class _LanguageScreenState extends State<LanguageScreen> {
                   height: 150,
                 ),
                 SizedBox(height: 20),
-                // Text(
-                //   'Zakat Al-mal',
-                //   style: TextStyle(
-                //     fontSize: 24,
-                //     fontWeight: FontWeight.bold,
-                //   ),
-                // ),
                 SizedBox(height: 90),
                 Text(
                   'Discover the importance and           \nprinciples of zakat           ',
@@ -88,11 +88,11 @@ class _LanguageScreenState extends State<LanguageScreen> {
                         ),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8), // Set vertical padding to 16 and horizontal padding to 8
+                        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
                         child: Column(
                           children: [
-                            Icon(Icons.language, color: Colors.white), // Add your icon here
-                            SizedBox(height: 8), // Adjust the spacing between the icon and text
+                            Icon(Icons.language, color: Colors.white),
+                            SizedBox(height: 8),
                             Text(
                               'English',
                               style: TextStyle(color: Colors.white),
@@ -113,11 +113,11 @@ class _LanguageScreenState extends State<LanguageScreen> {
                         ),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12), // Set vertical padding to 16 and horizontal padding to 8
+                        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
                         child: Column(
                           children: [
-                            Icon(Icons.language, color: Colors.white), // Add your icon here
-                            SizedBox(height: 8), // Adjust the spacing between the icon and text
+                            Icon(Icons.language, color: Colors.white),
+                            SizedBox(height: 8),
                             Text(
                               'العربية',
                               style: TextStyle(color: Colors.white),
@@ -126,7 +126,6 @@ class _LanguageScreenState extends State<LanguageScreen> {
                         ),
                       ),
                     ),
-
                   ],
                 ),
                 SizedBox(height: 20),
@@ -168,5 +167,4 @@ class _LanguageScreenState extends State<LanguageScreen> {
       ),
     );
   }
-
 }

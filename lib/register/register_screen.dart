@@ -73,7 +73,7 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
-                        'assets/images/background.jpg'), // Replace with your actual image file name and path
+                        'assets/images/background.png'), // Replace with your actual image file name and path
                     fit: BoxFit.cover,
                   ),
                 ),

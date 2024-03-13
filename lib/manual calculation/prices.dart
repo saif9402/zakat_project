@@ -8,12 +8,14 @@ class GoldSilverEntryScreen extends StatefulWidget {
 
 class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
   TextEditingController gold24Controller = TextEditingController();
+  TextEditingController gold22Controller = TextEditingController();
   TextEditingController gold21Controller = TextEditingController();
   TextEditingController gold18Controller = TextEditingController();
   TextEditingController silverController = TextEditingController();
   TextEditingController currencyController = TextEditingController();
 
   String? gold24ErrorText;
+  String? gold22ErrorText;
   String? gold21ErrorText;
   String? gold18ErrorText;
   String? silverErrorText;
@@ -37,6 +39,16 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
               onChanged: (value) {
                 setState(() {
                   gold24ErrorText = value.isEmpty ? 'Please enter gold value' : null;
+                });
+              },
+            ),
+            TextFormField(
+              controller: gold22Controller,
+              decoration: InputDecoration(labelText: 'Gold 22 carat *', errorText: gold22ErrorText),
+              keyboardType: TextInputType.number,
+              onChanged: (value) {
+                setState(() {
+                  gold22ErrorText = value.isEmpty ? 'Please enter gold value' : null;
                 });
               },
             ),
@@ -84,6 +96,7 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
             ElevatedButton(
               onPressed: () {
                 if (gold24Controller.text.isEmpty ||
+                    gold22Controller.text.isEmpty ||
                     gold21Controller.text.isEmpty ||
                     gold18Controller.text.isEmpty ||
                     silverController.text.isEmpty || currencyController.text.isEmpty) {
@@ -101,6 +114,7 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                     MaterialPageRoute(
                       builder: (context) => GoldCashScreen(
                         gold24Price: double.tryParse(gold24Controller.text) ?? 0.0,
+                        gold22Price: double.tryParse(gold22Controller.text) ?? 0.0,
                         gold21Price: double.tryParse(gold21Controller.text) ?? 0.0,
                         gold18Price: double.tryParse(gold18Controller.text) ?? 0.0,
                         silverPrice: double.tryParse(silverController.text) ?? 0.0,
