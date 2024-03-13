@@ -69,98 +69,100 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                   style: TextStyle(color: customColor),
                 ),
               ),
-              body: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                        'assets/images/background.png'), // Replace with your actual image file name and path
-                    fit: BoxFit.cover,
+              body: SingleChildScrollView( // Wrap with SingleChildScrollView
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                          'assets/images/background1.png'), // Replace with your actual image file name and path
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                padding: EdgeInsets.all(12),
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(height: 100.0),
-                      TextFormField(
-                        decoration: customInputDecoration(
-                            Locales.string(context, 'first_name')),
-                        style: TextStyle(
-                            color: Colors
-                                .black), // Text input color changed to black
-                        onChanged: (text) {
-                          firstName = text;
-                        },
-                      ),
-                      SizedBox(height: 10),
-                      TextFormField(
-                        decoration: customInputDecoration(
-                            Locales.string(context, 'last_name')),
-                        style: TextStyle(
-                            color: Colors
-                                .black), // Text input color changed to black
-                        onChanged: (text) {
-                          lastName = text;
-                        },
-                      ),
-                      SizedBox(height: 10),
-                      TextFormField(
-                        decoration: customInputDecoration(
-                            Locales.string(context, 'user_name')),
-                        style: TextStyle(
-                            color: Colors
-                                .black), // Text input color changed to black
-                        onChanged: (text) {
-                          userName = text;
-                        },
-                      ),
-                      SizedBox(height: 10),
-                      TextFormField(
-                        decoration: customInputDecoration(
-                            Locales.string(context, 'email')),
-                        style: TextStyle(
-                            color: Colors
-                                .black), // Text input color changed to black
-                        onChanged: (text) {
-                          email = text;
-                        },
-                      ),
-                      SizedBox(height: 10),
-                      TextFormField(
-                        decoration: customInputDecoration(
-                            Locales.string(context, 'password')),
-                        style: TextStyle(color: Colors.black),
-                        obscureText: true, // Text input color changed to black
-                        onChanged: (text) {
-                          password = text;
-                        },
-                      ),
-                      SizedBox(height: 20),
-                      ElevatedButton(
-                          onPressed: validateForm,
-                          child: Text(Locales.string(context, 'create_account'),
-                              style: TextStyle(color: Colors.white)),
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(customColor),
-                          )),
-                      SizedBox(height: 10),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(
-                              context, LoginScreen.routeName);
-                        },
-                        child: Text(
-                          Locales.string(context, 'already_have_an_account'),
-                          textAlign: TextAlign.center,
+                  padding: EdgeInsets.all(12),
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 100.0),
+                        TextFormField(
+                          decoration: customInputDecoration(
+                              Locales.string(context, 'first_name')),
                           style: TextStyle(
-                              color: customColor, fontWeight: FontWeight.bold),
+                              color: Colors
+                                  .black), // Text input color changed to black
+                          onChanged: (text) {
+                            firstName = text;
+                          },
                         ),
-                      )
-                    ],
+                        SizedBox(height: 10),
+                        TextFormField(
+                          decoration: customInputDecoration(
+                              Locales.string(context, 'last_name')),
+                          style: TextStyle(
+                              color: Colors
+                                  .black), // Text input color changed to black
+                          onChanged: (text) {
+                            lastName = text;
+                          },
+                        ),
+                        SizedBox(height: 10),
+                        TextFormField(
+                          decoration: customInputDecoration(
+                              Locales.string(context, 'user_name')),
+                          style: TextStyle(
+                              color: Colors
+                                  .black), // Text input color changed to black
+                          onChanged: (text) {
+                            userName = text;
+                          },
+                        ),
+                        SizedBox(height: 10),
+                        TextFormField(
+                          decoration: customInputDecoration(
+                              Locales.string(context, 'email')),
+                          style: TextStyle(
+                              color: Colors
+                                  .black), // Text input color changed to black
+                          onChanged: (text) {
+                            email = text;
+                          },
+                        ),
+                        SizedBox(height: 10),
+                        TextFormField(
+                          decoration: customInputDecoration(
+                              Locales.string(context, 'password')),
+                          style: TextStyle(color: Colors.black),
+                          obscureText: true, // Text input color changed to black
+                          onChanged: (text) {
+                            password = text;
+                          },
+                        ),
+                        SizedBox(height: 20),
+                        ElevatedButton(
+                            onPressed: validateForm,
+                            child: Text(Locales.string(context, 'create_account'),
+                                style: TextStyle(color: Colors.white)),
+                            style: ButtonStyle(
+                              backgroundColor:
+                              MaterialStateProperty.all<Color>(customColor),
+                            )),
+                        SizedBox(height: 10),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                                context, LoginScreen.routeName);
+                          },
+                          child: Text(
+                            Locales.string(context, 'already_have_an_account'),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: customColor, fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

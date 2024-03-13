@@ -31,7 +31,7 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
       appBar: AppBar(
         title: Text('Gold and Silver Prices'),
       ),
-      body: SingleChildScrollView(
+      body: SingleChildScrollView( // Wrap with SingleChildScrollView
         child: Column(
           children: [
             FutureBuilder<QuerySnapshot>(

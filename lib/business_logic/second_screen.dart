@@ -43,7 +43,7 @@ class SecondScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Silver, Investment, Inventory & Debts'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
