@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../api/api.dart'; // Import the PricesDisplayPage
 import '../manual calculation/prices.dart';
 class ZakatCalculationMethodScreen extends StatelessWidget {
+
+  static const String routeName = 'choose';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -55,17 +55,20 @@ class _LanguageScreenState extends State<LanguageScreen> {
                 ),
                 SizedBox(height: 20),
                 SizedBox(height: 90),
-                Text(
-                  'Discover the importance and           \nprinciples of zakat           ',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                Center(
+                  child: Text(
+                    Locales.string(context, 'language_screen_text'),
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center, // Align text to center
                   ),
                 ),
                 SizedBox(height: 40),
                 Center(
                   child: Text(
-                    'Select language:',
+                    Locales.string(context, 'select_language'),
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -155,7 +158,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 10),
                     child: Text(
-                      'Get Started',
+                      Locales.string(context, 'get_started'),
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

@@ -4,6 +4,7 @@ import 'package:flutter_locales/flutter_locales.dart';
 import 'package:my_zakat/provider/user_provider.dart';
 import 'package:my_zakat/register/register_screen.dart';
 import 'package:provider/provider.dart';
+import 'choosing/choosing.dart';
 import 'home/home_screen.dart';
 import 'language/language.dart';
 import 'login/login_screen.dart';

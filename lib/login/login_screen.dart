@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import '../choosing/choosing.dart';
 import '../database_utils.dart';
 import '../provider/base.dart';
 import '../home/home_screen.dart';
@@ -39,132 +40,141 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
   String password = '';
   var formKey = GlobalKey<FormState>();
 
-  // Define the gold color
-  final Color BlueColor = Color.fromARGB(255, 59, 129, 214);
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<LoginViewModel>(
       create: (buildContext) => viewModel,
-      child: Stack(
-        children: [
-          Container(color: Colors.white),
-          Scaffold(
-            backgroundColor: Colors.transparent,
-
-            body: SingleChildScrollView(
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                        'assets/images/background1.png'), // Replace with your actual image file name and path
-                    fit: BoxFit.cover,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height, // Set height to screen height
+          child: SingleChildScrollView(
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    'assets/images/background1.jpg', // Replace with your background image path
                   ),
-                ),
-                padding: EdgeInsets.all(12),
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: Locales.string(context, 'email'),
-                          labelStyle: TextStyle(color: Colors.white),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white, width: 1),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                        onChanged: (text) {
-                          email = text;
-                        },
-                        validator: (text) {
-                          if (text == null || text.trim().isEmpty) {
-                            return 'Please enter Email';
-                          }
-
-                          bool emailValid = RegExp(
-                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(text);
-                          if (!emailValid) {
-                            return 'Email format not valid';
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(height: 10),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: Locales.string(context, 'password'),
-                          labelStyle: TextStyle(color: Colors.white),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white, width: 1),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                        obscureText: true,
-                        onChanged: (text) {
-                          password = text;
-                        },
-                        validator: (text) {
-                          if (text == null || text.trim().isEmpty) {
-                            return 'Please enter password';
-                          }
-                          if (text.trim().length < 6) {
-                            return 'Password should be at least 6 chars';
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: () {
-                          validateForm();
-                        },
-                        style: ButtonStyle(
-                          backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.black),
-                          shape:
-                          MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                          ),
-                        ),
-                        child: Text(
-                          Locales.string(context, 'login'),
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(
-                              context, RegisterScreen.routeName);
-                        },
-                        child: Text(
-                          Locales.string(context, 'dont_have_an_account'),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ],
-                  ),
+                  fit: BoxFit.cover,
                 ),
               ),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+              height: MediaQuery.of(context).size.height, // Set height to screen height
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: 100),
+                  Text(
+                    Locales.string(context, 'welcome_back'),
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black, // Set text color to black
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: Locales.string(context, 'email'),
+                            prefixIcon: Icon(Icons.email, color: Colors.blue),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(color: Colors.blue),
+                            ),
+                          ),
+                          style: TextStyle(color: Colors.black), // Set text color to black
+                          onChanged: (text) {
+                            email = text;
+                          },
+                          validator: (text) {
+                            if (text == null || text.trim().isEmpty) {
+                              return 'Please enter Email';
+                            }
+
+                            bool emailValid = RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+                            ).hasMatch(text);
+                            if (!emailValid) {
+                              return 'Email format not valid';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 20),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: Locales.string(context, 'password'),
+                            prefixIcon: Icon(Icons.lock, color: Colors.blue),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(color: Colors.blue),
+                            ),
+                          ),
+                          style: TextStyle(color: Colors.black), // Set text color to black
+                          obscureText: true,
+                          onChanged: (text) {
+                            password = text;
+                          },
+                          validator: (text) {
+                            if (text == null || text.trim().isEmpty) {
+                              return 'Please enter password';
+                            }
+                            if (text.trim().length < 6) {
+                              return 'Password should be at least 6 chars';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: () {
+                            validateForm();
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            child: Text(
+                              Locales.string(context, 'login'),
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, RegisterScreen.routeName);
+                    },
+                    child: Text(
+                      Locales.string(context, 'dont_have_an_account'),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-          )
-        ],
+          ),
+        ),
       ),
     );
   }
@@ -192,11 +202,13 @@ class LoginViewModel extends BaseViewModel<LoginNavigator> {
       navigator?.showLoading(isDismissable: true);
       print('dialog shown');
       var result = await firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
       // read user from Database
       var userObj = await DataBaseUtils.readUser(result.user?.uid ?? "");
       if (userObj == null) {
-        message = 'Failed to complete Sign in , please try register again';
+        message = 'Failed to complete Sign in, please try registering again';
       } else {
         // goto home
         navigator?.gotoHome(userObj);
@@ -204,7 +216,7 @@ class LoginViewModel extends BaseViewModel<LoginNavigator> {
     } on FirebaseAuthException catch (e) {
       message = 'Wrong Email or password';
     } catch (e) {
-      message = 'something went wrong';
+      message = 'Something went wrong';
     }
     navigator?.hideDialog();
     if (message != null) {

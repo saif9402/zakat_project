@@ -109,106 +109,106 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
                 SizedBox(height: 16),
 
                 // Featured Content Card
-                Card(
-                  elevation: 1,
-                  color: blueColor,
-                  child: InkWell(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ListTile(
-                          title: Text(
-                            'Zakat details',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text('Check out the latest updates'),
-                          textColor: Colors.black,
-                        ),
-                        Divider(),
-                        Padding(
-                          padding: const EdgeInsets.all(24.0),
-                          child: Text(
-                            "What is Zakat?",
-                            style: TextStyle(
-                                fontSize:
-                                    24.0, // Adjust the font size as needed
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "Zakat is an Islamic practice of giving a portion of ones wealth to those in need.\n It is considered a mandatory act of worship and one of the Five Pillars of Islam.\n The term Zakat is derived from the Arabic word that means to purify or to cleanse.",
-                            style: TextStyle(
-                                fontSize:
-                                    16.0, // Adjust the font size as needed
-                                fontWeight: FontWeight.normal),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(
-                            "Calculation of Zakat:",
-                            style: TextStyle(
-                                fontSize:
-                                    24.0, // Adjust the font size as needed
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "Zakat is typically calculated as 2.5% of a Muslim's accumulated wealth over a specific period.\n This includes savings, investments, gold, silver, and other assets.\n The purpose of Zakat is to redistribute wealth and ensure that the basic needs of the less fortunate are met.",
-                            style: TextStyle(
-                                fontSize:
-                                    16.0, // Adjust the font size as needed
-                                fontWeight: FontWeight.normal),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(
-                            "Distribution of Zakat:",
-                            style: TextStyle(
-                                fontSize:
-                                    24.0, // Adjust the font size as needed
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "Zakat is distributed among specific categories of recipients, as outlined in Islamic teachings.\n These categories include the poor, the needy, those in debt,\n those working to collect and distribute Zakat, and others in specific circumstances.",
-                            style: TextStyle(
-                                fontSize:
-                                    16.0, // Adjust the font size as needed
-                                fontWeight: FontWeight.normal),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(
-                            "2.5 Percent Rule:",
-                            style: TextStyle(
-                                fontSize:
-                                    24.0, // Adjust the font size as needed
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "The 2.5% rule signifies that a Muslim is required to give 2.5% of their accumulated wealth annually as Zakat.\n This helps maintain social justice and equality within the Muslim community.",
-                            style: TextStyle(
-                                fontSize:
-                                    16.0, // Adjust the font size as needed
-                                fontWeight: FontWeight.normal),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                // Card(
+                //   elevation: 1,
+                //   color: blueColor,
+                //   child: InkWell(
+                //     child: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         ListTile(
+                //           title: Text(
+                //             'Zakat details',
+                //             style: TextStyle(fontWeight: FontWeight.bold),
+                //           ),
+                //           subtitle: Text('Check out the latest updates'),
+                //           textColor: Colors.black,
+                //         ),
+                //         Divider(),
+                //         Padding(
+                //           padding: const EdgeInsets.all(24.0),
+                //           child: Text(
+                //             "What is Zakat?",
+                //             style: TextStyle(
+                //                 fontSize:
+                //                     24.0, // Adjust the font size as needed
+                //                 fontWeight: FontWeight.bold),
+                //           ),
+                //         ),
+                //         Padding(
+                //           padding: const EdgeInsets.all(10.0),
+                //           child: Text(
+                //             "Zakat is an Islamic practice of giving a portion of ones wealth to those in need.\n It is considered a mandatory act of worship and one of the Five Pillars of Islam.\n The term Zakat is derived from the Arabic word that means to purify or to cleanse.",
+                //             style: TextStyle(
+                //                 fontSize:
+                //                     16.0, // Adjust the font size as needed
+                //                 fontWeight: FontWeight.normal),
+                //           ),
+                //         ),
+                //         Padding(
+                //           padding: const EdgeInsets.all(16.0),
+                //           child: Text(
+                //             "Calculation of Zakat:",
+                //             style: TextStyle(
+                //                 fontSize:
+                //                     24.0, // Adjust the font size as needed
+                //                 fontWeight: FontWeight.bold),
+                //           ),
+                //         ),
+                //         Padding(
+                //           padding: const EdgeInsets.all(10.0),
+                //           child: Text(
+                //             "Zakat is typically calculated as 2.5% of a Muslim's accumulated wealth over a specific period.\n This includes savings, investments, gold, silver, and other assets.\n The purpose of Zakat is to redistribute wealth and ensure that the basic needs of the less fortunate are met.",
+                //             style: TextStyle(
+                //                 fontSize:
+                //                     16.0, // Adjust the font size as needed
+                //                 fontWeight: FontWeight.normal),
+                //           ),
+                //         ),
+                //         Padding(
+                //           padding: const EdgeInsets.all(16.0),
+                //           child: Text(
+                //             "Distribution of Zakat:",
+                //             style: TextStyle(
+                //                 fontSize:
+                //                     24.0, // Adjust the font size as needed
+                //                 fontWeight: FontWeight.bold),
+                //           ),
+                //         ),
+                //         Padding(
+                //           padding: const EdgeInsets.all(10.0),
+                //           child: Text(
+                //             "Zakat is distributed among specific categories of recipients, as outlined in Islamic teachings.\n These categories include the poor, the needy, those in debt,\n those working to collect and distribute Zakat, and others in specific circumstances.",
+                //             style: TextStyle(
+                //                 fontSize:
+                //                     16.0, // Adjust the font size as needed
+                //                 fontWeight: FontWeight.normal),
+                //           ),
+                //         ),
+                //         Padding(
+                //           padding: const EdgeInsets.all(16.0),
+                //           child: Text(
+                //             "2.5 Percent Rule:",
+                //             style: TextStyle(
+                //                 fontSize:
+                //                     24.0, // Adjust the font size as needed
+                //                 fontWeight: FontWeight.bold),
+                //           ),
+                //         ),
+                //         Padding(
+                //           padding: const EdgeInsets.all(10.0),
+                //           child: Text(
+                //             "The 2.5% rule signifies that a Muslim is required to give 2.5% of their accumulated wealth annually as Zakat.\n This helps maintain social justice and equality within the Muslim community.",
+                //             style: TextStyle(
+                //                 fontSize:
+                //                     16.0, // Adjust the font size as needed
+                //                 fontWeight: FontWeight.normal),
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
                 SizedBox(height: 24.0),
                 ElevatedButton(
                   onPressed: () {

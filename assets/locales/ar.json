@@ -12,5 +12,10 @@
   "welcome_back": "مرحبا بك",
   "total": "مجموع الزكاة",
   "how_to_calculate_zakat": "كيف تحسب الزكاة؟",
-  "get_started": "البدء"
+
+  "get_started": "البدء",
+  "select_language": "اختر اللغة",
+  "language_screen_text": "اكتشف أهمية ومبادئ الزكاة",
+
+  "welcome_back": "مرحبا بعودتك"
 }

@@ -12,7 +12,12 @@
   "welcome_back": "Welcome back!",
   "total": "Total",
   "how_to_calculate_zakat": "How to calculate Zakat?",
-  "get_started": "Get started"
+
+  "get_started": "Get started",
+  "select_language": "Select language",
+  "language_screen_text": "Discover the importance and principles of zakat",
+
+  "welcome_back": "Welcome back"
 
 
 }
