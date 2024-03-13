@@ -120,10 +120,10 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
                   );
                 }
 
-                else if(gold24Weight<85 ||
-                        gold21Weight<97 ||
-                        gold18Weight<113 ||
-                        silverWeight<595){
+                else if((gold24Weight<85 && gold24WeightController.text.isNotEmpty) ||
+                    (gold21Weight<97 && gold21WeightController.text.isNotEmpty) ||
+                    (gold18Weight<113 && gold18WeightController.text.isNotEmpty) ||
+                    (silverWeight<595 && silverWeightController.text.isNotEmpty)){
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('Please enter valid weights.'),
