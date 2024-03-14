@@ -72,7 +72,7 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
             height: screenHeight,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/background1.jpg'), // Replace with your actual image file name and path
+                image: AssetImage('assets/images/background.png'), // Replace with your actual image file name and path
                 fit: BoxFit.cover,
               ),
             ),
@@ -80,17 +80,29 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
           SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: screenWidth * 0.2, // 5% of screen width padding horizontally
-                vertical: screenHeight * 0.35, // 5% of screen height padding vertically
+                horizontal: screenWidth * 0.1, // 5% of screen width padding horizontally
+                vertical: screenHeight * 0.37, // 5% of screen height padding vertically
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   // Welcome Card
                   // Welcome Card
-                  Card(
-                    elevation: 1,
-                    color: Colors.transparent, // Set the background color to transparent
+                  // Welcome Card
+                  // Welcome Card
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.transparent, // Set the background color to transparent
+                      borderRadius: BorderRadius.circular(10), // Optional: Add border radius if needed
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5), // Add shadow if desired
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
                     child: Padding(
                       padding: EdgeInsets.all(screenWidth * 0.03), // 3% of screen width padding
                       child: Column(
@@ -99,21 +111,21 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
                           Text(
                             Locales.string(context, 'welcome_back'),
                             style: TextStyle(
-                              fontSize: screenWidth * 0.06, // 6% of screen width font size
+                              fontSize: screenWidth * 0.08, // 6% of screen width font size
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Arial',
-                              color: Colors.white, // Set text color to white
+                              color: Colors.black, // Set text color to white
                             ),
                           ),
                           SizedBox(height: screenHeight * 0.01), // 1% of screen height space
                           Text(
                             '${Locales.string(context, 'mr')} ${currentUser?.fName} ${currentUser?.lName}',
-                            style: TextStyle(fontSize: screenWidth * 0.04, color: Colors.white), // 4% of screen width font size
+                            style: TextStyle(fontSize: screenWidth * 0.05, color: Colors.black), // 4% of screen width font size
                           ),
                           SizedBox(height: screenHeight * 0.01), // 1% of screen height space
                           Text(
                             '${Locales.string(context, 'total')}: ${currentUser?.total_zakat.toStringAsFixed(2)}',
-                            style: TextStyle(fontSize: screenWidth * 0.04, color: Colors.white), // 4% of screen width font size
+                            style: TextStyle(fontSize: screenWidth * 0.05, color: Colors.black), // 4% of screen width font size
                           ),
                         ],
                       ),
@@ -121,10 +133,13 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
                   ),
 
 
+
+
+
                   // Featured Content Buttons
                   SizedBox(height: screenHeight * 0.04), // 4% of screen height space
                   Padding(
-                    padding: EdgeInsets.only(left: screenWidth * 0.05), // Shift buttons to the left by 5% of screen width
+                    padding: EdgeInsets.only(left: screenWidth * 0.01), // Shift buttons to the left by 5% of screen width
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [

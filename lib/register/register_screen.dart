@@ -39,13 +39,13 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
   InputDecoration customInputDecoration(String labelText) {
     return InputDecoration(
       labelText: labelText,
-      labelStyle: TextStyle(color: Colors.white),
+      labelStyle: TextStyle(color: Colors.black),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.white),
+        borderSide: BorderSide(color: Colors.black),
         borderRadius: BorderRadius.circular(10), // Added border radius
       ),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.white),
+        borderSide: BorderSide(color: Colors.black),
         borderRadius: BorderRadius.circular(10), // Added border radius
       ),
     );
@@ -63,24 +63,33 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    'assets/images/background1.jpg', // Replace with your background image path
+                    'assets/images/background.png', // Replace with your background image path
                   ),
                   fit: BoxFit.cover,
                 ),
               ),
-              padding: EdgeInsets.all(5),
+              padding: EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 //mainAxisAlignment: MainAxisAlignment.end, // Align at the bottom
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.32), // 10% of screen height
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.35),
+                  Text(
+                    Locales.string(context, 'Hi!'),
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black, // Set text color to white
+                    ),
+                    textAlign: TextAlign.center,
+                  ),// 10% of screen height
                   FractionallySizedBox(
                     widthFactor: 0.65, // 65% of screen width
                     child: TextFormField(
                       decoration: customInputDecoration(
                           Locales.string(context, 'first_name')),
                       style: TextStyle(
-                          color: Colors.white),
+                          color: Colors.black),
                       onChanged: (text) {
                         firstName = text;
                       },
@@ -93,7 +102,7 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                       decoration: customInputDecoration(
                           Locales.string(context, 'last_name')),
                       style: TextStyle(
-                          color: Colors.white),
+                          color: Colors.black),
                       onChanged: (text) {
                         lastName = text;
                       },
@@ -119,7 +128,7 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                       decoration: customInputDecoration(
                           Locales.string(context, 'email')),
                       style: TextStyle(
-                          color: Colors.white),
+                          color: Colors.black),
                       onChanged: (text) {
                         email = text;
                       },
@@ -131,7 +140,7 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                     child: TextFormField(
                       decoration: customInputDecoration(
                           Locales.string(context, 'password')),
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.black),
                       obscureText: true,
                       onChanged: (text) {
                         password = text;
@@ -170,7 +179,7 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                       Locales.string(context, 'already_have_an_account'),
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                          color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   )
                 ],

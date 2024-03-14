@@ -48,13 +48,15 @@ class _LanguageScreenState extends State<LanguageScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  'assets/images/logo.png',
-                  width: 150,
-                  height: 150,
+                FractionalTranslation(
+                  translation: Offset(0.0, 2.2), // Move the logo upward by 10% of its height
+                  child: Image.asset(
+                    'assets/images/logo.png',
+                    width: 70,
+                    height: 70,
+                  ),
                 ),
-                SizedBox(height: 20),
-                SizedBox(height: 90),
+                SizedBox(height: 170),
                 Center(
                   child: Text(
                     Locales.string(context, 'language_screen_text'),

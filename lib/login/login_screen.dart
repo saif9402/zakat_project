@@ -45,7 +45,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
     return ChangeNotifierProvider<LoginViewModel>(
       create: (buildContext) => viewModel,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         body: SizedBox(
           height: MediaQuery.of(context).size.height, // Set height to screen height
           child: SingleChildScrollView(
@@ -53,7 +53,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    'assets/images/background1.jpg', // Replace with your background image path
+                    'assets/images/background.png', // Replace with your background image path
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -64,13 +64,13 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 100),
+                  SizedBox(height: 150),
                   Text(
                     Locales.string(context, 'welcome_back'),
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white, // Set text color to white
+                      color: Colors.black, // Set text color to white
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -84,18 +84,18 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                           child: TextFormField(
                             decoration: InputDecoration(
                               labelText: Locales.string(context, 'email'),
-                              labelStyle: TextStyle(color: Colors.white), // Set label text color to white
-                              prefixIcon: Icon(Icons.email, color: Colors.white),
+                              labelStyle: TextStyle(color: Colors.black), // Set label text color to white
+                              prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
+                                borderSide: BorderSide(color: Colors.black),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
+                                borderSide: BorderSide(color: Colors.black),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
-                            style: TextStyle(color: Colors.white), // Set text color to white
+                            style: TextStyle(color: Colors.black), // Set text color to white
                             onChanged: (text) {
                               email = text;
                             },
@@ -120,18 +120,18 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                           child: TextFormField(
                             decoration: InputDecoration(
                               labelText: Locales.string(context, 'password'),
-                              labelStyle: TextStyle(color: Colors.white), // Set label text color to white
-                              prefixIcon: Icon(Icons.lock, color: Colors.white),
+                              labelStyle: TextStyle(color: Colors.black), // Set label text color to white
+                              prefixIcon: Icon(Icons.lock, color: Colors.lightBlueAccent),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
+                                borderSide: BorderSide(color: Colors.black),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
+                                borderSide: BorderSide(color: Colors.black),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
-                            style: TextStyle(color: Colors.white), // Set text color to white
+                            style: TextStyle(color: Colors.black), // Set text color to white
                             obscureText: true,
                             onChanged: (text) {
                               password = text;
@@ -180,7 +180,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                       Locales.string(context, 'dont_have_an_account'),
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
