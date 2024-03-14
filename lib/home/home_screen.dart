@@ -87,8 +87,10 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   // Welcome Card
+                  // Welcome Card
                   Card(
                     elevation: 1,
+                    color: Colors.transparent, // Set the background color to transparent
                     child: Padding(
                       padding: EdgeInsets.all(screenWidth * 0.03), // 3% of screen width padding
                       child: Column(
@@ -97,24 +99,27 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
                           Text(
                             Locales.string(context, 'welcome_back'),
                             style: TextStyle(
-                                fontSize: screenWidth * 0.06, // 6% of screen width font size
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Arial'),
+                              fontSize: screenWidth * 0.06, // 6% of screen width font size
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Arial',
+                              color: Colors.white, // Set text color to white
+                            ),
                           ),
                           SizedBox(height: screenHeight * 0.01), // 1% of screen height space
                           Text(
                             '${Locales.string(context, 'mr')} ${currentUser?.fName} ${currentUser?.lName}',
-                            style: TextStyle(fontSize: screenWidth * 0.04), // 4% of screen width font size
+                            style: TextStyle(fontSize: screenWidth * 0.04, color: Colors.white), // 4% of screen width font size
                           ),
                           SizedBox(height: screenHeight * 0.01), // 1% of screen height space
                           Text(
                             '${Locales.string(context, 'total')}: ${currentUser?.total_zakat.toStringAsFixed(2)}',
-                            style: TextStyle(fontSize: screenWidth * 0.04), // 4% of screen width font size
+                            style: TextStyle(fontSize: screenWidth * 0.04, color: Colors.white), // 4% of screen width font size
                           ),
                         ],
                       ),
                     ),
                   ),
+
 
                   // Featured Content Buttons
                   SizedBox(height: screenHeight * 0.04), // 4% of screen height space
