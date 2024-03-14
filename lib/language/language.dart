@@ -83,7 +83,17 @@ class _LanguageScreenState extends State<LanguageScreen> {
                     ElevatedButton(
                       onPressed: () => switchLocale(0),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.grey), // Background color of the button
+                        overlayColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed)) {
+                              // Change color when the button is pressed
+                              return Colors.blue.withOpacity(0.8); // Example: decrease opacity to simulate pressing effect
+                            }
+                            // Return default color if the button is not pressed
+                            return Colors.blue;
+                          },
+                        ),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
@@ -104,11 +114,22 @@ class _LanguageScreenState extends State<LanguageScreen> {
                         ),
                       ),
                     ),
+
                     SizedBox(width: 20),
                     ElevatedButton(
                       onPressed: () => switchLocale(1),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.grey), // Background color of the button
+                        overlayColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed)) {
+                              // Change color when the button is pressed
+                              return Colors.blue.withOpacity(0.8); // Example: decrease opacity to simulate pressing effect
+                            }
+                            // Return default color if the button is not pressed
+                            return Colors.blue;
+                          },
+                        ),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
