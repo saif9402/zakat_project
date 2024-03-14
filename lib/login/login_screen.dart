@@ -70,7 +70,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black, // Set text color to black
+                      color: Colors.white, // Set text color to white
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -79,57 +79,73 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                     key: formKey,
                     child: Column(
                       children: [
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: Locales.string(context, 'email'),
-                            prefixIcon: Icon(Icons.email, color: Colors.blue),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: BorderSide(color: Colors.blue),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.65, // Set width to 80% of the screen width
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              labelText: Locales.string(context, 'email'),
+                              labelStyle: TextStyle(color: Colors.white), // Set label text color to white
+                              prefixIcon: Icon(Icons.email, color: Colors.white),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
                             ),
-                          ),
-                          style: TextStyle(color: Colors.black), // Set text color to black
-                          onChanged: (text) {
-                            email = text;
-                          },
-                          validator: (text) {
-                            if (text == null || text.trim().isEmpty) {
-                              return 'Please enter Email';
-                            }
+                            style: TextStyle(color: Colors.white), // Set text color to white
+                            onChanged: (text) {
+                              email = text;
+                            },
+                            validator: (text) {
+                              if (text == null || text.trim().isEmpty) {
+                                return 'Please enter Email';
+                              }
 
-                            bool emailValid = RegExp(
-                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-                            ).hasMatch(text);
-                            if (!emailValid) {
-                              return 'Email format not valid';
-                            }
-                            return null;
-                          },
+                              bool emailValid = RegExp(
+                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+                              ).hasMatch(text);
+                              if (!emailValid) {
+                                return 'Email format not valid';
+                              }
+                              return null;
+                            },
+                          ),
                         ),
                         SizedBox(height: 20),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: Locales.string(context, 'password'),
-                            prefixIcon: Icon(Icons.lock, color: Colors.blue),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: BorderSide(color: Colors.blue),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.65, // Set width to 80% of the screen width
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              labelText: Locales.string(context, 'password'),
+                              labelStyle: TextStyle(color: Colors.white), // Set label text color to white
+                              prefixIcon: Icon(Icons.lock, color: Colors.white),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
                             ),
+                            style: TextStyle(color: Colors.white), // Set text color to white
+                            obscureText: true,
+                            onChanged: (text) {
+                              password = text;
+                            },
+                            validator: (text) {
+                              if (text == null || text.trim().isEmpty) {
+                                return 'Please enter password';
+                              }
+                              if (text.trim().length < 6) {
+                                return 'Password should be at least 6 chars';
+                              }
+                              return null;
+                            },
                           ),
-                          style: TextStyle(color: Colors.black), // Set text color to black
-                          obscureText: true,
-                          onChanged: (text) {
-                            password = text;
-                          },
-                          validator: (text) {
-                            if (text == null || text.trim().isEmpty) {
-                              return 'Please enter password';
-                            }
-                            if (text.trim().length < 6) {
-                              return 'Password should be at least 6 chars';
-                            }
-                            return null;
-                          },
                         ),
                         SizedBox(height: 20),
                         ElevatedButton(
@@ -137,7 +153,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                             validateForm();
                           },
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                            backgroundColor: MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
                             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -148,7 +164,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                             padding: EdgeInsets.symmetric(vertical: 15),
                             child: Text(
                               Locales.string(context, 'login'),
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 18 ,color: Colors.white),
                             ),
                           ),
                         ),
@@ -164,7 +180,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                       Locales.string(context, 'dont_have_an_account'),
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),

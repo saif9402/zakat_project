@@ -39,13 +39,13 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
   InputDecoration customInputDecoration(String labelText) {
     return InputDecoration(
       labelText: labelText,
-      labelStyle: TextStyle(color: customColor),
+      labelStyle: TextStyle(color: Colors.white),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: customColor),
+        borderSide: BorderSide(color: Colors.white),
         borderRadius: BorderRadius.circular(10), // Added border radius
       ),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: customColor),
+        borderSide: BorderSide(color: Colors.white),
         borderRadius: BorderRadius.circular(10), // Added border radius
       ),
     );
@@ -59,6 +59,7 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
         return Scaffold(
           body: SingleChildScrollView(
             child: Container(
+              height: MediaQuery.of(context).size.height, // Set height to screen height
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
@@ -67,65 +68,80 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                   fit: BoxFit.cover,
                 ),
               ),
-              padding: EdgeInsets.all(20),
-              child: Form( // Assigning formKey to Form widget
-                key: formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 40.0),
-                    TextFormField(
+              padding: EdgeInsets.all(5),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                //mainAxisAlignment: MainAxisAlignment.end, // Align at the bottom
+                children: [
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.32), // 10% of screen height
+                  FractionallySizedBox(
+                    widthFactor: 0.65, // 65% of screen width
+                    child: TextFormField(
                       decoration: customInputDecoration(
                           Locales.string(context, 'first_name')),
                       style: TextStyle(
-                          color: Colors.black),
+                          color: Colors.white),
                       onChanged: (text) {
                         firstName = text;
                       },
                     ),
-                    SizedBox(height: 20),
-                    TextFormField(
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01), // 1% of screen height
+                  FractionallySizedBox(
+                    widthFactor: 0.65, // 65% of screen width
+                    child: TextFormField(
                       decoration: customInputDecoration(
                           Locales.string(context, 'last_name')),
                       style: TextStyle(
-                          color: Colors.black),
+                          color: Colors.white),
                       onChanged: (text) {
                         lastName = text;
                       },
                     ),
-                    SizedBox(height: 20),
-                    TextFormField(
-                      decoration: customInputDecoration(
-                          Locales.string(context, 'user_name')),
-                      style: TextStyle(
-                          color: Colors.black),
-                      onChanged: (text) {
-                        userName = text;
-                      },
-                    ),
-                    SizedBox(height: 20),
-                    TextFormField(
+                  ),
+                  // SizedBox(height: MediaQuery.of(context).size.height * 0.01), // 1% of screen height
+                  // FractionallySizedBox(
+                  //   widthFactor: 0.65, // 65% of screen width
+                  //   child: TextFormField(
+                  //     decoration: customInputDecoration(
+                  //         Locales.string(context, 'user_name')),
+                  //     style: TextStyle(
+                  //         color: Colors.white),
+                  //     onChanged: (text) {
+                  //       userName = text;
+                  //     },
+                  //   ),
+                  // ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01), // 1% of screen height
+                  FractionallySizedBox(
+                    widthFactor: 0.65, // 65% of screen width
+                    child: TextFormField(
                       decoration: customInputDecoration(
                           Locales.string(context, 'email')),
                       style: TextStyle(
-                          color: Colors.black),
+                          color: Colors.white),
                       onChanged: (text) {
                         email = text;
                       },
                     ),
-                    SizedBox(height: 20),
-                    TextFormField(
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01), // 1% of screen height
+                  FractionallySizedBox(
+                    widthFactor: 0.65, // 65% of screen width
+                    child: TextFormField(
                       decoration: customInputDecoration(
                           Locales.string(context, 'password')),
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.white),
                       obscureText: true,
                       onChanged: (text) {
                         password = text;
                       },
                     ),
-                    SizedBox(height: 40),
-                    ElevatedButton(
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01), // 1% of screen height
+                  FractionallySizedBox(
+                    widthFactor: 0.53, // 65% of screen width
+                    child: ElevatedButton(
                       onPressed: validateForm,
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
@@ -135,29 +151,29 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                         ),
                       ),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(customColor),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10), // Added border radius
+                            borderRadius: BorderRadius.circular(20), // Added border radius
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(
-                            context, LoginScreen.routeName);
-                      },
-                      child: Text(
-                        Locales.string(context, 'already_have_an_account'),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: customColor, fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01), // 1% of screen height
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(
+                          context, LoginScreen.routeName);
+                    },
+                    child: Text(
+                      Locales.string(context, 'already_have_an_account'),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                  )
+                ],
               ),
             ),
           ),

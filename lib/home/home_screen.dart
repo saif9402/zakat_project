@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
-import 'package:my_zakat/business_logic/knowledge_base.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:my_zakat/provider/my_user.dart';
 import 'package:provider/provider.dart';
+import '../choosing/choosing.dart';
 import '../provider/base.dart';
 import '../provider/user_provider.dart';
 import '../login/login_screen.dart';
-import '../api/api.dart';
-import '../choosing/choosing.dart';
+import '../zakat elfitr/zakat elfitr.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home';
-  var Zakat_Total = 0;
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
     implements HomeNavigator {
-  // final Color blueColor = Color.fromARGB(172, 107, 184, 251);
   final Color buttonColor = Color.fromARGB(255, 22, 92, 177);
 
   @override
@@ -29,8 +27,6 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
   void initState() {
     super.initState();
     viewModel.navigator = this;
-    // UserProvider user = UserProvider();
-    // user.initMyUser();
   }
 
   @override
@@ -38,10 +34,17 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
     MyUser? currentUser =
         Provider.of<UserProvider>(context, listen: false).user;
 
+    // Get the screen width and height
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0, // Remove app bar shadow
         title: Text(
-          'Zakaty',
+          '',
           textAlign: TextAlign.center,
         ),
         centerTitle: true,
@@ -56,184 +59,135 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
               // Close the current screen
               Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(builder: (context) => LoginScreen()),
-                (route) => false,
+                    (route) => false,
               );
             },
           ),
         ],
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-                'assets/images/background.jpg'), // Replace with your actual image file name and path
-            fit: BoxFit.cover,
+      body: Stack(
+        children: [
+          Container(
+            width: screenWidth,
+            height: screenHeight,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/background1.jpg'), // Replace with your actual image file name and path
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-        ),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                // Welcome Card
-                Card(
-                  margin: EdgeInsets.only(top: 190.0),
-                  elevation: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+          SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: screenWidth * 0.2, // 5% of screen width padding horizontally
+                vertical: screenHeight * 0.35, // 5% of screen height padding vertically
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // Welcome Card
+                  Card(
+                    elevation: 1,
+                    child: Padding(
+                      padding: EdgeInsets.all(screenWidth * 0.03), // 3% of screen width padding
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            Locales.string(context, 'welcome_back'),
+                            style: TextStyle(
+                                fontSize: screenWidth * 0.06, // 6% of screen width font size
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Arial'),
+                          ),
+                          SizedBox(height: screenHeight * 0.01), // 1% of screen height space
+                          Text(
+                            '${Locales.string(context, 'mr')} ${currentUser?.fName} ${currentUser?.lName}',
+                            style: TextStyle(fontSize: screenWidth * 0.04), // 4% of screen width font size
+                          ),
+                          SizedBox(height: screenHeight * 0.01), // 1% of screen height space
+                          Text(
+                            '${Locales.string(context, 'total')}: ${currentUser?.total_zakat.toStringAsFixed(2)}',
+                            style: TextStyle(fontSize: screenWidth * 0.04), // 4% of screen width font size
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  // Featured Content Buttons
+                  SizedBox(height: screenHeight * 0.04), // 4% of screen height space
+                  Padding(
+                    padding: EdgeInsets.only(left: screenWidth * 0.05), // Shift buttons to the left by 5% of screen width
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
-                          Locales.string(context, 'welcome_back'),
-                          style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Arial'),
+                        ElevatedButton(
+                          onPressed: () {
+                            // Navigate to the desired screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ZakatCalculationMethodScreen()),
+                            );
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.lightBlueAccent), // Set the background color
+                            foregroundColor: MaterialStateProperty.all<Color>(
+                                Colors.white), // Set the text color
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(
+                                screenWidth * 0.04), // 4% of screen width padding
+                            child: Text(
+                              Locales.string(context, 'calculate_zakat'),
+                              style: TextStyle(
+                                fontSize: screenWidth *
+                                    0.04, // 4% of screen width font size
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         ),
-                        SizedBox(height: 8),
-                        Text(
-                          '${Locales.string(context, 'mr')} ${currentUser?.fName} ${currentUser?.lName}',
-                          style: TextStyle(fontSize: 18),
+                        SizedBox(height: screenHeight * 0.02), // Add 2% of screen height space between buttons
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ZakatElfitrPage()),
+                            );
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.lightBlueAccent), // Set the background color
+                            foregroundColor: MaterialStateProperty.all<Color>(
+                                Colors.white), // Set the text color
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(
+                                screenWidth * 0.04), // 4% of screen width padding
+                            child: Text(
+                              'Zakat Elfitr',
+                              style: TextStyle(
+                                fontSize: screenWidth *
+                                    0.04, // 4% of screen width font size
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         ),
-                        SizedBox(height: 8),
-                        Text(
-                          '${Locales.string(context, 'total')}: ${currentUser?.total_zakat.toStringAsFixed(2)}',
-                          style: TextStyle(fontSize: 18),
-                        ),
+
                       ],
                     ),
                   ),
-                ),
-                SizedBox(height: 16),
-
-                // Featured Content Card
-                // Card(
-                //   elevation: 1,
-                //   color: blueColor,
-                //   child: InkWell(
-                //     child: Column(
-                //       crossAxisAlignment: CrossAxisAlignment.start,
-                //       children: [
-                //         ListTile(
-                //           title: Text(
-                //             'Zakat details',
-                //             style: TextStyle(fontWeight: FontWeight.bold),
-                //           ),
-                //           subtitle: Text('Check out the latest updates'),
-                //           textColor: Colors.black,
-                //         ),
-                //         Divider(),
-                //         Padding(
-                //           padding: const EdgeInsets.all(24.0),
-                //           child: Text(
-                //             "What is Zakat?",
-                //             style: TextStyle(
-                //                 fontSize:
-                //                     24.0, // Adjust the font size as needed
-                //                 fontWeight: FontWeight.bold),
-                //           ),
-                //         ),
-                //         Padding(
-                //           padding: const EdgeInsets.all(10.0),
-                //           child: Text(
-                //             "Zakat is an Islamic practice of giving a portion of ones wealth to those in need.\n It is considered a mandatory act of worship and one of the Five Pillars of Islam.\n The term Zakat is derived from the Arabic word that means to purify or to cleanse.",
-                //             style: TextStyle(
-                //                 fontSize:
-                //                     16.0, // Adjust the font size as needed
-                //                 fontWeight: FontWeight.normal),
-                //           ),
-                //         ),
-                //         Padding(
-                //           padding: const EdgeInsets.all(16.0),
-                //           child: Text(
-                //             "Calculation of Zakat:",
-                //             style: TextStyle(
-                //                 fontSize:
-                //                     24.0, // Adjust the font size as needed
-                //                 fontWeight: FontWeight.bold),
-                //           ),
-                //         ),
-                //         Padding(
-                //           padding: const EdgeInsets.all(10.0),
-                //           child: Text(
-                //             "Zakat is typically calculated as 2.5% of a Muslim's accumulated wealth over a specific period.\n This includes savings, investments, gold, silver, and other assets.\n The purpose of Zakat is to redistribute wealth and ensure that the basic needs of the less fortunate are met.",
-                //             style: TextStyle(
-                //                 fontSize:
-                //                     16.0, // Adjust the font size as needed
-                //                 fontWeight: FontWeight.normal),
-                //           ),
-                //         ),
-                //         Padding(
-                //           padding: const EdgeInsets.all(16.0),
-                //           child: Text(
-                //             "Distribution of Zakat:",
-                //             style: TextStyle(
-                //                 fontSize:
-                //                     24.0, // Adjust the font size as needed
-                //                 fontWeight: FontWeight.bold),
-                //           ),
-                //         ),
-                //         Padding(
-                //           padding: const EdgeInsets.all(10.0),
-                //           child: Text(
-                //             "Zakat is distributed among specific categories of recipients, as outlined in Islamic teachings.\n These categories include the poor, the needy, those in debt,\n those working to collect and distribute Zakat, and others in specific circumstances.",
-                //             style: TextStyle(
-                //                 fontSize:
-                //                     16.0, // Adjust the font size as needed
-                //                 fontWeight: FontWeight.normal),
-                //           ),
-                //         ),
-                //         Padding(
-                //           padding: const EdgeInsets.all(16.0),
-                //           child: Text(
-                //             "2.5 Percent Rule:",
-                //             style: TextStyle(
-                //                 fontSize:
-                //                     24.0, // Adjust the font size as needed
-                //                 fontWeight: FontWeight.bold),
-                //           ),
-                //         ),
-                //         Padding(
-                //           padding: const EdgeInsets.all(10.0),
-                //           child: Text(
-                //             "The 2.5% rule signifies that a Muslim is required to give 2.5% of their accumulated wealth annually as Zakat.\n This helps maintain social justice and equality within the Muslim community.",
-                //             style: TextStyle(
-                //                 fontSize:
-                //                     16.0, // Adjust the font size as needed
-                //                 fontWeight: FontWeight.normal),
-                //           ),
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                SizedBox(height: 24.0),
-                ElevatedButton(
-                  onPressed: () {
-                    // Navigate to the desired screen
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ZakatCalculationMethodScreen()),
-                    );
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        buttonColor), // Set the background color
-                    foregroundColor: MaterialStateProperty.all<Color>(
-                        Colors.white), // Set the text color
-                  ),
-                  child: Text(
-                    Locales.string(context, 'calculate_zakat'),
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
