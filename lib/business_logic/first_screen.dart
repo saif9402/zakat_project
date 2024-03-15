@@ -34,12 +34,13 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false, // Prevent the Scaffold from resizing when the keyboard appears
+      extendBodyBehindAppBar: true,
+      //resizeToAvoidBottomInset: false, // Prevent the Scaffold from resizing when the keyboard appears
       // appBar: AppBar(
       //   title: Text('Gold, Silver'),
       // ),
-      body: Stack(
-        children: [
+      body: SingleChildScrollView(
+        child:
           Container(
             height: MediaQuery.of(context).size.height, // Set height to screen height
             decoration: BoxDecoration(
@@ -48,11 +49,9 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
                 fit: BoxFit.cover,
               ),
             ),
-          ),
-          ListView(
-            shrinkWrap: true,
-            children: [
-              Padding(
+
+          child : Padding(
+            // shrinkWrap: true,
                 padding: EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -289,10 +288,9 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
                     ),
                   ],
                 ),
-              ),
-            ],
+
           ),
-        ],
+          ),
       ),
     );
   }

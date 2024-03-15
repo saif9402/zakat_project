@@ -32,6 +32,32 @@ Future<double> calculateZakat({
   double cashZakat = 0.0;
   double zakatAmount = 0.0;
 
+  //removing debts:
+  if(cash != 0 || investments !=0 || apartments !=0 || inventory !=0){
+    //cash, investments, apartment, inventory, debts
+    double total = cash + apartments + inventory + investments - debts;
+    double totalToGold = total / gold24Price;
+    bool l = totalToGold >= 85 ? true : false;
+    if(l){
+      cashZakat = total * 0.025;
+    }
+  }
+  else if(gold24Weight != 0){
+    gold24Weight -= (debts/gold24Price);
+  }
+  else if(gold22Weight != 0){
+    gold22Weight -= (debts/gold22Price);
+  }
+  else if(gold21Weight != 0){
+    gold21Weight -= (debts/gold21Price);
+  }
+  else if(gold18Weight != 0){
+    gold18Weight -= (debts/gold18Price);
+  }
+  else if(silverWeight != 0){
+    silverWeight -= (debts/silverPrice);
+  }
+
   //gold 24 carat:
   bool x = gold24Weight >= 85 ? true : false;
   if(x){
@@ -62,13 +88,7 @@ Future<double> calculateZakat({
     silverZakat = (silverWeight * 0.025) * silverPrice;
   }
 
-  //cash, investments, apartment, inventory, debts
-  double total = cash + apartments + inventory + investments - debts;
-  double totalToGold = total / gold24Price;
-  bool l = totalToGold >= 85 ? true : false;
-  if(l){
-    cashZakat = total * 0.025;
-  }
+
 
   zakatAmount = cashZakat + silverZakat + goldZakat;
 

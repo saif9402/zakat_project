@@ -41,14 +41,20 @@ class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Container(
+      extendBodyBehindAppBar: true,
+
+      // resizeToAvoidBottomInset: false,
+      body: SingleChildScrollView(
+        child : Container(
+          height: MediaQuery.of(context).size.height, // Set height to screen height
+
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/background.png"),
             fit: BoxFit.cover,
           ),
         ),
+        child: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -278,6 +284,8 @@ class SecondScreen extends StatelessWidget {
             ),
             )
           ],
+        ),
+      ),
         ),
       ),
     );
