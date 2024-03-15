@@ -86,8 +86,25 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                   FractionallySizedBox(
                     widthFactor: 0.65, // 65% of screen width
                     child: TextFormField(
-                      decoration: customInputDecoration(
-                          Locales.string(context, 'first_name')),
+                      decoration: InputDecoration(
+                        labelText:   Locales.string(context, 'first_name'),
+                        labelStyle: TextStyle(color: Colors.black),
+                        // Set label text color to white
+                        // errorText: gold24ErrorText,
+                        errorBorder: OutlineInputBorder( // Remove error border to eliminate the horizontal line
+                          borderSide: BorderSide(color: Colors.red),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        //prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                          borderRadius: BorderRadius.circular(20),
+                        ),),
+
                       style: TextStyle(
                           color: Colors.black),
                       onChanged: (text) {
@@ -99,8 +116,24 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                   FractionallySizedBox(
                     widthFactor: 0.65, // 65% of screen width
                     child: TextFormField(
-                      decoration: customInputDecoration(
-                          Locales.string(context, 'last_name')),
+                      decoration: InputDecoration(
+                        labelText:  Locales.string(context, 'last_name'),
+                        labelStyle: TextStyle(color: Colors.black),
+                        // Set label text color to white
+                        // errorText: gold24ErrorText,
+                        errorBorder: OutlineInputBorder( // Remove error border to eliminate the horizontal line
+                          borderSide: BorderSide(color: Colors.red),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        //prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                          borderRadius: BorderRadius.circular(20),
+                        ),),
                       style: TextStyle(
                           color: Colors.black),
                       onChanged: (text) {
@@ -125,8 +158,24 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                   FractionallySizedBox(
                     widthFactor: 0.65, // 65% of screen width
                     child: TextFormField(
-                      decoration: customInputDecoration(
-                          Locales.string(context, 'email')),
+                      decoration: InputDecoration(
+                        labelText:   Locales.string(context, 'email'),
+                        labelStyle: TextStyle(color: Colors.black),
+                        // Set label text color to white
+                        // errorText: gold24ErrorText,
+                        errorBorder: OutlineInputBorder( // Remove error border to eliminate the horizontal line
+                          borderSide: BorderSide(color: Colors.red),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        //prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                          borderRadius: BorderRadius.circular(20),
+                        ),),
                       style: TextStyle(
                           color: Colors.black),
                       onChanged: (text) {
@@ -138,8 +187,24 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                   FractionallySizedBox(
                     widthFactor: 0.65, // 65% of screen width
                     child: TextFormField(
-                      decoration: customInputDecoration(
-                          Locales.string(context, 'password')),
+                      decoration: InputDecoration(
+                        labelText:   Locales.string(context, 'password'),
+                        labelStyle: TextStyle(color: Colors.black),
+                        // Set label text color to white
+                        // errorText: gold24ErrorText,
+                        errorBorder: OutlineInputBorder( // Remove error border to eliminate the horizontal line
+                          borderSide: BorderSide(color: Colors.red),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        //prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                          borderRadius: BorderRadius.circular(20),
+                        ),),
                       style: TextStyle(color: Colors.black),
                       obscureText: true,
                       onChanged: (text) {
