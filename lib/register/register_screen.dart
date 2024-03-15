@@ -160,7 +160,7 @@ class _RegisterScreenState extends BaseState<RegisterScreen, RegisterViewModel>
                         ),
                       ),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20), // Added border radius

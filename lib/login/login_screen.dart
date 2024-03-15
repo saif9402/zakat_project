@@ -153,7 +153,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                             validateForm();
                           },
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
+                            backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),

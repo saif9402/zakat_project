@@ -45,7 +45,7 @@ class ZakatCalculationMethodScreen extends StatelessWidget {
                       );
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set text color to white
                     ),
                     child: Text(
@@ -65,7 +65,7 @@ class ZakatCalculationMethodScreen extends StatelessWidget {
                       );
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set text color to white
                     ),
                     child: Text(

@@ -38,7 +38,7 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.fromLTRB(30.0, MediaQuery.of(context).padding.top + 230.0 , 30.0, 0.0),
+            padding: EdgeInsets.fromLTRB(30.0, MediaQuery.of(context).padding.top + 260.0 , 30.0, 0.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -381,7 +381,7 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                       }
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set text color to white
                     ),
                     child: Text(
