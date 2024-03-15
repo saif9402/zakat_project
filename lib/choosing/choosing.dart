@@ -3,16 +3,31 @@ import 'package:flutter_locales/flutter_locales.dart';
 import '../api/api.dart'; // Import the PricesDisplayPage
 import '../manual calculation/prices.dart';
 
-class ZakatCalculationMethodScreen extends StatelessWidget {
+class ZakatCalculationMethodScreen extends StatefulWidget {
   static const String routeName = 'choose';
+
+  @override
+  _ZakatCalculationMethodScreenState createState() =>
+      _ZakatCalculationMethodScreenState();
+}
+
+class _ZakatCalculationMethodScreenState
+    extends State<ZakatCalculationMethodScreen> {
+  bool manualButtonPressed = false;
+  bool automaticButtonPressed = false;
+  final Color buttonColor = Color.fromARGB(255, 22, 92, 177);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Choose Calculation Method'),
+      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/background.png'), // Replace with your image path
+            image: AssetImage('assets/images/background.png'),
+            // Replace with your actual image file name and path
             fit: BoxFit.cover,
           ),
         ),
@@ -21,59 +36,103 @@ class ZakatCalculationMethodScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                Locales.string(context, 'choose_calculation_method'), // Add your text here
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black, // Set text color to white
+              Padding(
+                padding: const EdgeInsets.only(top: 60.0),
+                child: Center(
+                  child: Text(
+                    "Choose the Way to calculate the ",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25.0,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
               ),
-              SizedBox(height: 30.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      // Navigate to the PricesDisplayPage for manual calculation
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => GoldSilverEntryScreen(),
-                        ),
-                      );
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set text color to white
+              Center(
+                child: Text(
+                  "Zakat",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25.0,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 60.0),
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                    MaterialStateProperty.all<Color>(buttonColor),
+                    foregroundColor: MaterialStateProperty.all<Color>(
+                      Colors.white,
                     ),
-                    child: Text(
-                      Locales.string(context, 'manual'),
-                      style: TextStyle(color: Colors.white), // Set text color to white
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      EdgeInsets.only(left: 100.0,right: 100),
+                    ),
+                    elevation: MaterialStateProperty.all<double>(5.0), // Add elevation
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0), // Add border radius
+                        side: BorderSide(color: Colors.blue), // Add border color
+                      ),
+                    ),
+                    shadowColor: MaterialStateProperty.all<Color>(
+                      Colors.grey.withOpacity(0.5), // Add shadow color
                     ),
                   ),
-                  SizedBox(width: 16.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Navigate to the PricesDisplayPage for automatic calculation
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PricesDisplayPage(),
-                        ),
-                      );
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set text color to white
-                    ),
-                    child: Text(
-                      Locales.string(context, 'automatic'),
-                      style: TextStyle(color: Colors.white), // Set text color to white
+                  onPressed: () {
+                    setState(() {
+                      manualButtonPressed = true;
+                      automaticButtonPressed = false;
+                    });
+                    // Navigate to the PricesDisplayPage for manual calculation
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => GoldSilverEntryScreen(),
+                      ),
+                    );
+                  },
+                  child: Text(Locales.string(context, 'manual')),
+                ),
+              ),
+              SizedBox(height : 25.0),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                  MaterialStateProperty.all<Color>(buttonColor),
+                  foregroundColor:
+                  MaterialStateProperty.all<Color>(Colors.white),
+                  padding: MaterialStateProperty.all<EdgeInsets>(
+                    EdgeInsets.only(left: 92.0,right: 92.0),
+                  ),
+                  elevation: MaterialStateProperty.all<double>(5.0), // Add elevation
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0), // Add border radius
+                      side: BorderSide(color: Colors.blue), // Add border color
                     ),
                   ),
-                ],
+                  shadowColor: MaterialStateProperty.all<Color>(
+                    Colors.grey.withOpacity(0.5), // Add shadow color
+                  ),
+                ),
+                onPressed: () {
+                  setState(() {
+                    automaticButtonPressed = true;
+                    manualButtonPressed = false;
+                  });
+                  // Navigate to the PricesDisplayPage for automatic calculation
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PricesDisplayPage(),
+                    ),
+                  );
+                },
+                child: Text(Locales.string(context, 'automatic')),
               ),
             ],
           ),
