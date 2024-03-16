@@ -43,7 +43,7 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Enter gold and silver prices',
+                  Locales.string(context, 'enter_gold_price'),
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 24.0,
@@ -153,15 +153,6 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                   children: [
                     Expanded(
                       child: Container(
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(
-                        //     color: Colors.black54,
-                        //     width: 3.0,
-                        //   ),
-                        //   borderRadius: BorderRadius.circular(
-                        //     12.0,
-                        //   ),
-                        // ),
                         child: TextFormField(
                           controller: gold21Controller,
                           decoration: InputDecoration(

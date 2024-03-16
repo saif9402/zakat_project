@@ -20,9 +20,6 @@ class _ZakatCalculationMethodScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Choose Calculation Method'),
-      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -40,7 +37,7 @@ class _ZakatCalculationMethodScreenState
                 padding: const EdgeInsets.only(top: 60.0),
                 child: Center(
                   child: Text(
-                    "Choose the Way to calculate the ",
+                    Locales.string(context, 'choose_calculation_method'),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 25.0,
@@ -49,16 +46,7 @@ class _ZakatCalculationMethodScreenState
                   ),
                 ),
               ),
-              Center(
-                child: Text(
-                  "Zakat",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25.0,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
+
               Container(
                 padding: EdgeInsets.only(top: 60.0),
                 child: ElevatedButton(
