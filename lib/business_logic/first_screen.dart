@@ -58,7 +58,7 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
                   children: [
                     SizedBox(height: MediaQuery.of(context).size.height * 0.33),
                     Text(
-                      'Enter gold and silver weights in grams:',
+                      Locales.string(context, 'enter_gold_weights'),
                       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.black),
                     ),
                     SizedBox(height: 8.0),

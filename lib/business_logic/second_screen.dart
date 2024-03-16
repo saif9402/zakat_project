@@ -64,7 +64,7 @@ class SecondScreen extends StatelessWidget {
                 .size
                 .height * 0.36),
             Text(
-              'Enter money details:',
+              Locales.string(context, 'enter_money_details'),
               style: TextStyle(fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.black),
@@ -257,7 +257,7 @@ class SecondScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text('${Locales.string(context,
-                                'your_zakat_amount_is')} $zakatAmount $currency'),
+                                'your_zakat_amount_is')} ${zakatAmount.toStringAsFixed(2)} $currency'),
                             SizedBox(height: 8.0),
                             Text(Locales.string(context, 'this_amount')),
                           ],

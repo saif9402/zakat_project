@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-import '../choosing/choosing.dart';
 import '../database_utils.dart';
 import '../provider/base.dart';
 import '../home/home_screen.dart';
@@ -28,11 +27,9 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
   void initState() {
     super.initState();
     viewModel.navigator = this;
-
-    // Make the navigation bar transparent
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.transparent, // Set navigation bar color to transparent
-      statusBarColor: Colors.transparent, // Set status bar color to transparent
+      systemNavigationBarColor: Colors.transparent,
+      statusBarColor: Colors.transparent,
     ));
   }
 
@@ -47,19 +44,19 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
       child: Scaffold(
         backgroundColor: Colors.black,
         body: SizedBox(
-          height: MediaQuery.of(context).size.height, // Set height to screen height
+          height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    'assets/images/background.png', // Replace with your background image path
+                    'assets/images/background.png',
                   ),
                   fit: BoxFit.cover,
                 ),
               ),
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-              height: MediaQuery.of(context).size.height, // Set height to screen height
+              height: MediaQuery.of(context).size.height,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +67,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black, // Set text color to white
+                      color: Colors.black,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -80,11 +77,11 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                     child: Column(
                       children: [
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.65, // Set width to 80% of the screen width
+                          width: MediaQuery.of(context).size.width * 0.65,
                           child: TextFormField(
                             decoration: InputDecoration(
                               labelText: Locales.string(context, 'email'),
-                              labelStyle: TextStyle(color: Colors.black), // Set label text color to white
+                              labelStyle: TextStyle(color: Colors.black),
                               prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
@@ -95,20 +92,20 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
-                            style: TextStyle(color: Colors.black), // Set text color to white
+                            style: TextStyle(color: Colors.black),
                             onChanged: (text) {
                               email = text;
                             },
                             validator: (text) {
                               if (text == null || text.trim().isEmpty) {
-                                return 'Please enter Email';
+                                return Locales.string(context, 'please_enter_email');
                               }
 
                               bool emailValid = RegExp(
                                 r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
                               ).hasMatch(text);
                               if (!emailValid) {
-                                return 'Email format not valid';
+                                return Locales.string(context, 'email_format_not_valid');
                               }
                               return null;
                             },
@@ -116,11 +113,11 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                         ),
                         SizedBox(height: 20),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.65, // Set width to 80% of the screen width
+                          width: MediaQuery.of(context).size.width * 0.65,
                           child: TextFormField(
                             decoration: InputDecoration(
                               labelText: Locales.string(context, 'password'),
-                              labelStyle: TextStyle(color: Colors.black), // Set label text color to white
+                              labelStyle: TextStyle(color: Colors.black),
                               prefixIcon: Icon(Icons.lock, color: Colors.lightBlueAccent),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.black),
@@ -131,17 +128,17 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
-                            style: TextStyle(color: Colors.black), // Set text color to white
+                            style: TextStyle(color: Colors.black),
                             obscureText: true,
                             onChanged: (text) {
                               password = text;
                             },
                             validator: (text) {
                               if (text == null || text.trim().isEmpty) {
-                                return 'Please enter password';
+                                return Locales.string(context, 'enter_password');
                               }
                               if (text.trim().length < 6) {
-                                return 'Password should be at least 6 chars';
+                                return Locales.string(context, 'password_should_be');
                               }
                               return null;
                             },
@@ -150,7 +147,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                         SizedBox(height: 20),
                         ElevatedButton(
                           onPressed: () {
-                            validateForm();
+                            validateForm(context);
                           },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
@@ -195,9 +192,9 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
     );
   }
 
-  void validateForm() {
+  void validateForm(BuildContext context) {
     if (formKey.currentState?.validate() == true) {
-      viewModel.login(email, password);
+      viewModel.login(email, password, context);
     }
   }
 
@@ -212,7 +209,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
 
 class LoginViewModel extends BaseViewModel<LoginNavigator> {
   var firebaseAuth = FirebaseAuth.instance;
-  void login(String email, String password) async {
+  void login(String email, String password, BuildContext context) async {
     String? message = null;
     try {
       navigator?.showLoading(isDismissable: true);
@@ -221,18 +218,17 @@ class LoginViewModel extends BaseViewModel<LoginNavigator> {
         email: email,
         password: password,
       );
-      // read user from Database
+
       var userObj = await DataBaseUtils.readUser(result.user?.uid ?? "");
       if (userObj == null) {
-        message = 'Failed to complete Sign in, please try registering again';
+        message =Locales.string(context, 'failed_to_complete_sign_in');
       } else {
-        // goto home
         navigator?.gotoHome(userObj);
       }
     } on FirebaseAuthException catch (e) {
-      message = 'Wrong Email or password';
+      message = Locales.string(context, 'wrong_email_password');
     } catch (e) {
-      message = 'Something went wrong';
+      message = Locales.string(context, 'something_went_wrong');
     }
     navigator?.hideDialog();
     if (message != null) {

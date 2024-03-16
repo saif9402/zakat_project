@@ -190,7 +190,7 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
                               padding: EdgeInsets.all(
                                   screenWidth * 0.04), // 4% of screen width padding
                               child: Text(
-                                'Zakat Elfitr',
+                                Locales.string(context, 'zakat_elftr'),
                                 style: TextStyle(
                                   fontSize: screenWidth *
                                       0.04, // 4% of screen width font size

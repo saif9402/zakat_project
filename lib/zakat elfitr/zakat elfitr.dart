@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 
 import '../home/home_screen.dart';
 
@@ -25,7 +26,7 @@ class ZakatElfitrPage extends StatelessWidget {
               children: [
                 SizedBox(height: MediaQuery.of(context).size.height * 0.34),
                 Text(
-                  'Zakat Elfitr:',
+                  Locales.string(context, 'zakat_elftr'),
                   style: TextStyle(fontSize: 20, color: Colors.black),
                 ),
                 SizedBox(height: 8.0),
@@ -33,19 +34,14 @@ class ZakatElfitrPage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Container(
                     child: Text(
-                      'Zakat al-Fitr is a kind of charity (sadaqah)'
-                          ' that is obligatory at the time of breaking the fast of Ramadan'
-                          ' when the sun sets on the last day of Ramadan\n'
-                          'The amount of zakat elfitr atleast is: '
-                          '2.75 kg of any food for human consumption for each one such as:'
-                          ' dates, wheat, rice or other kinds of food that humans eat according to your country',
+                      Locales.string(context, 'zakat_elfitr_explaination'),
                       style: TextStyle(fontSize: 13, color: Colors.black),
                     ),
                   ),
                 ),
                 SizedBox(height: 26.0),
                 Text(
-                  'Enter the number of family members:',
+                  Locales.string(context, 'number_of_family'),
                   style: TextStyle(fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.black),
@@ -57,7 +53,7 @@ class ZakatElfitrPage extends StatelessWidget {
                     controller: _familyMembersController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      labelText: 'Number of Family Members',
+                      labelText: Locales.string(context, 'number_of_family'),
                       labelStyle: TextStyle(color: Colors.black),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.indigo),
@@ -82,7 +78,7 @@ class ZakatElfitrPage extends StatelessWidget {
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set text color to white
                     ),
-                    child: Text('Calculate', style: TextStyle(color: Colors.white) ,),
+                    child: Text(Locales.string(context, 'calculate'), style: TextStyle(color: Colors.white) ,),
                   ),
                 ),
               ],
@@ -104,8 +100,8 @@ class ZakatElfitrPage extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Zakat Elfitr Amount'),
-          content: Text('The Zakat Elfitr amount for $numberOfFamilyMembers family members is $zakatAmount kg.'),
+          title: Text(Locales.string(context, 'elfitr_amount')),
+          content: Text('${Locales.string(context, 'the_zakat_amount')} $numberOfFamilyMembers ${Locales.string(context, 'familty_members_is')} $zakatAmount ${Locales.string(context, 'kg')}.'),
           actions: [
             TextButton(
               onPressed: () {
@@ -114,7 +110,7 @@ class ZakatElfitrPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => HomeScreen()),
                 );// Close the dialog
               },
-              child: Text('OK'),
+              child: Text(Locales.string(context, 'ok')),
             ),
           ],
         );

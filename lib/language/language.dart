@@ -39,7 +39,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/background.png'), // Change path to your image file
+                image: AssetImage('assets/images/background.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -49,7 +49,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FractionalTranslation(
-                  translation: Offset(0.0, 2.2), // Move the logo upward by 10% of its height
+                  translation: Offset(0.0, 2.2),
                   child: Image.asset(
                     'assets/images/logo.png',
                     width: 70,
@@ -64,7 +64,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
-                    textAlign: TextAlign.center, // Align text to center
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 SizedBox(height: 40),
@@ -85,14 +85,12 @@ class _LanguageScreenState extends State<LanguageScreen> {
                     ElevatedButton(
                       onPressed: () => switchLocale(0),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.grey), // Background color of the button
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.grey),
                         overlayColor: MaterialStateProperty.resolveWith<Color>(
                               (Set<MaterialState> states) {
                             if (states.contains(MaterialState.pressed)) {
-                              // Change color when the button is pressed
-                              return Colors.blue.withOpacity(0.8); // Example: decrease opacity to simulate pressing effect
+                              return Colors.blue.withOpacity(0.8);
                             }
-                            // Return default color if the button is not pressed
                             return Colors.blue;
                           },
                         ),
@@ -121,14 +119,12 @@ class _LanguageScreenState extends State<LanguageScreen> {
                     ElevatedButton(
                       onPressed: () => switchLocale(1),
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.grey), // Background color of the button
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.grey),
                         overlayColor: MaterialStateProperty.resolveWith<Color>(
                               (Set<MaterialState> states) {
                             if (states.contains(MaterialState.pressed)) {
-                              // Change color when the button is pressed
-                              return Colors.blue.withOpacity(0.8); // Example: decrease opacity to simulate pressing effect
+                              return Colors.blue.withOpacity(0.8);
                             }
-                            // Return default color if the button is not pressed
                             return Colors.blue;
                           },
                         ),
