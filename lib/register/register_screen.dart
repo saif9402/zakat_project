@@ -37,6 +37,7 @@ class _RegisterScreenState extends BaseState<RegisterScreen,RegisterViewModel>
       statusBarColor: Colors.transparent,
     ));
   }
+  bool _isPasswordVisible = false; // This will control the visibility of the password
 
   @override
   Widget build(BuildContext context) {
@@ -211,6 +212,19 @@ class _RegisterScreenState extends BaseState<RegisterScreen,RegisterViewModel>
                                 labelText: Locales.string(context, 'password'),
                                 labelStyle: TextStyle(color: Colors.black),
                                 prefixIcon: Icon(Icons.lock, color: Colors.lightBlueAccent),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    // Change the icon based on whether the password is visible
+                                    _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                                    color: Colors.lightBlueAccent,
+                                  ),
+                                  onPressed: () {
+                                    // Update the visibility state
+                                    setState(() {
+                                      _isPasswordVisible = !_isPasswordVisible;
+                                    });
+                                  },
+                                ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.red),
                                   borderRadius: BorderRadius.circular(12.0),
@@ -229,7 +243,7 @@ class _RegisterScreenState extends BaseState<RegisterScreen,RegisterViewModel>
                                 ),
                               ),
                               style: TextStyle(color: Colors.black),
-                              obscureText: true,
+                              obscureText: !_isPasswordVisible, // Control the text visibility here
                               onChanged: (text) {
                                 password = text;
                               },

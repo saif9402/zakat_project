@@ -35,6 +35,8 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
 
   String email = '';
   String password = '';
+  bool _isPasswordVisible = false; // Add this line
+
   var formKey = GlobalKey<FormState>();
 
   @override
@@ -128,7 +130,21 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                               labelText: Locales.string(context, 'password'),
                               labelStyle: TextStyle(color: Colors.black),
                               prefixIcon: Icon(Icons.lock, color: Colors.lightBlueAccent),
-                              errorBorder: OutlineInputBorder( // Remove error border to eliminate the horizontal line
+                              // Add the suffix icon here
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  // Choose the icon based on the state of _isPasswordVisible
+                                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                                  color: Colors.lightBlueAccent,
+                                ),
+                                onPressed: () {
+                                  // Update the state to toggle visibility
+                                  setState(() {
+                                    _isPasswordVisible = !_isPasswordVisible;
+                                  });
+                                },
+                              ),
+                              errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.red),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
@@ -146,7 +162,7 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                               ),
                             ),
                             style: TextStyle(color: Colors.black),
-                            obscureText: true,
+                            obscureText: !_isPasswordVisible, // Use the state here
                             onChanged: (text) {
                               password = text;
                             },

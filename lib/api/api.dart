@@ -10,42 +10,112 @@ class PricesDisplayPage extends StatefulWidget {
 }
 
 class _PricesDisplayPageState extends State<PricesDisplayPage> {
-  String? selectedCountry = "Egypt";
-  final _formKey = GlobalKey<FormState>();
-  late String _currencyController = '';
-  late String _gold24Controller = '';
-  late String _gold22Controller = '';
-  late String _gold21Controller = '';
-  late String _gold18Controller = '';
-  late String _silverController = '';
+  final TextEditingController _searchController = TextEditingController();
+
+  List<String> _countryList = [];
+  List<String> _filteredCountryList = [];
+
+  String _currencyController = '';
+  String _gold24Controller = '';
+  String _gold22Controller = '';
+  String _gold21Controller = '';
+  String _gold18Controller = '';
+  String _silverController = '';
 
   @override
   void initState() {
     super.initState();
-    fetchCountryItems();
+    _fetchCountryList();
+    _searchController.addListener(() {
+      _filterCountryList(_searchController.text);
+    });
   }
 
-  Future<void> fetchCountryItems() async {
-    final doc = await FirebaseFirestore.instance
-        .collection('metalPrices')
-        .doc(selectedCountry)
-        .get();
-    final result = doc.data()!;
+  Future<void> _fetchCountryList() async {
+    FirebaseFirestore.instance.collection('metalPrices').get().then((querySnapshot) {
+      final List<String> countries = querySnapshot.docs.map((doc) => doc.id).toList();
+      setState(() {
+        _countryList = countries;
+        _filteredCountryList = countries;
+      });
+    });
+  }
+
+  void _filterCountryList(String enteredKeyword) {
+    List<String> results;
+    if (enteredKeyword.isEmpty) {
+      results = _countryList;
+    } else {
+      results = _countryList
+          .where((country) =>
+          country.toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .toList();
+    }
     setState(() {
-      _currencyController = result['currency'];
-      _gold24Controller = result['gold_24'];
-      _gold22Controller = result['gold_22'];
-      _gold21Controller = result['gold_21'];
-      _gold18Controller = result['gold_18'];
-      _silverController = result['silver'];
+      _filteredCountryList = results;
+    });
+  }
+
+  void _showCountryPicker() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                onChanged: _filterCountryList,
+                decoration: InputDecoration(
+                  labelText: 'Search Country',
+                  prefixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _filteredCountryList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    title: Text(_filteredCountryList[index]),
+                    onTap: () async {
+                      final docSnapshot = await FirebaseFirestore.instance
+                          .collection('metalPrices')
+                          .doc(_filteredCountryList[index])
+                          .get();
+                      final data = docSnapshot.data()!;
+                      setState(() {
+                        _searchController.text = _filteredCountryList[index];
+                        _updatePrices(data);
+                      });
+                      Navigator.pop(context);
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _updatePrices(Map<String, dynamic> data) {
+    setState(() {
+      _currencyController = data['currency'];
+      _gold24Controller = data['gold_24'];
+      _gold22Controller = data['gold_22'];
+      _gold21Controller = data['gold_21'];
+      _gold18Controller = data['gold_18'];
+      _silverController = data['silver'];
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double paddingTop = screenHeight * 0.34; // Shifting content downward by 20%
-
     return Scaffold(
       body: Stack(
         children: [
@@ -58,87 +128,46 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: paddingTop),
+            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.34),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  FutureBuilder<QuerySnapshot>(
-                    future:
-                    FirebaseFirestore.instance.collection('metalPrices').get(),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData) return CircularProgressIndicator();
-                      List<DropdownMenuItem<String>> countryItems = snapshot.data!.docs
-                          .map((doc) => DropdownMenuItem(
-                        value: doc.id,
-                        child: Text(doc.id),
-                      ))
-                          .toList();
-                      String? val = "Egypt";
-                      selectedCountry = val;
-                      return DropdownButtonFormField<String>(
-                        decoration: InputDecoration(
-                            labelText: Locales.string(context, "select_country")),
-                        items: countryItems,
-                        onChanged: (value) async {
-                          final docSnapshot = await FirebaseFirestore.instance
-                              .collection('metalPrices')
-                              .doc(value)
-                              .get();
-                          final data = docSnapshot.data()!;
-                          setState(() {
-                            selectedCountry = value;
-                            _currencyController = data['currency'];
-                            _gold24Controller = data['gold_24'];
-                            _gold22Controller = data['gold_22'];
-                            _gold21Controller = data['gold_21'];
-                            _gold18Controller = data['gold_18'];
-                            _silverController = data['silver'];
-                          });
-                        },
-                        value: selectedCountry,
-                      );
-                    },
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: _searchController,
+                      readOnly: true,
+                      onTap: _showCountryPicker,
+                      decoration: InputDecoration(
+                        labelText: 'Search and select a country',
+                        suffixIcon: Icon(Icons.search),
+                      ),
+                    ),
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: PriceCard(
-                          title: Locales.string(context, "gold_24_per_gram"),
-                          price: _gold24Controller,
-                          currency: _currencyController,
-                          imagePath: 'assets/images/gold_logo.png',
-                        ),
-                      ),
-                      Expanded(
-                        child: PriceCard(
-                          title: Locales.string(context, "gold_22_per_gram"),
-                          price: _gold22Controller,
-                          currency: _currencyController,
-                          imagePath: 'assets/images/gold_logo.png',
-                        ),
-                      ),
-                    ],
+                  PriceCard(
+                    title: Locales.string(context, "gold_24_per_gram"),
+                    price: _gold24Controller,
+                    currency: _currencyController,
+                    imagePath: 'assets/images/gold_logo.png',
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: PriceCard(
-                          title: Locales.string(context, "gold_21_per_gram"),
-                          price: _gold21Controller,
-                          currency: _currencyController,
-                          imagePath: 'assets/images/gold_logo.png',
-                        ),
-                      ),
-                      Expanded(
-                        child: PriceCard(
-                          title: Locales.string(context, "gold_18_per_gram"),
-                          price: _gold18Controller,
-                          currency: _currencyController,
-                          imagePath: 'assets/images/gold_logo.png',
-                        ),
-                      ),
-                    ],
+                  PriceCard(
+                    title: Locales.string(context, "gold_22_per_gram"),
+                    price: _gold22Controller,
+                    currency: _currencyController,
+                    imagePath: 'assets/images/gold_logo.png',
+                  ),
+                  PriceCard(
+                    title: Locales.string(context, "gold_21_per_gram"),
+                    price: _gold21Controller,
+                    currency: _currencyController,
+                    imagePath: 'assets/images/gold_logo.png',
+                  ),
+                  PriceCard(
+                    title: Locales.string(context, "gold_18_per_gram"),
+                    price: _gold18Controller,
+                    currency: _currencyController,
+                    imagePath: 'assets/images/gold_logo.png',
                   ),
                   PriceCard(
                     title: Locales.string(context, "silver_per_gram"),
@@ -170,8 +199,7 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
                       ),
                       child: Text(
                         Locales.string(context, "go_to_calculator"),
-                        style: TextStyle(fontSize: 18,
-                        color: Colors.white),
+                        style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
                   ),
@@ -182,6 +210,12 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 }
 
