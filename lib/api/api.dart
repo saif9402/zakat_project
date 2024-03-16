@@ -10,6 +10,7 @@ class PricesDisplayPage extends StatefulWidget {
 }
 
 class _PricesDisplayPageState extends State<PricesDisplayPage> {
+
   final TextEditingController _searchController = TextEditingController();
 
   List<String> _countryList = [];
@@ -25,6 +26,7 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
   @override
   void initState() {
     super.initState();
+     // Set the default value here
     _fetchCountryList();
     _searchController.addListener(() {
       _filterCountryList(_searchController.text);
