@@ -83,6 +83,10 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                               borderSide: BorderSide(color: Colors.indigo),
                               borderRadius: BorderRadius.circular(20),
                             ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.indigo),
                               borderRadius: BorderRadius.circular(20),
@@ -128,6 +132,10 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                               borderSide: BorderSide(color: Colors.indigo),
                               borderRadius: BorderRadius.circular(20),
                             ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.indigo),
                               borderRadius: BorderRadius.circular(20),
@@ -167,6 +175,10 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                             //prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.indigo),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
                               borderRadius: BorderRadius.circular(20),
                             ),
                             focusedBorder: OutlineInputBorder(
@@ -211,6 +223,10 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                             //prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.indigo),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
                               borderRadius: BorderRadius.circular(20),
                             ),
                             focusedBorder: OutlineInputBorder(
@@ -261,6 +277,10 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                               borderSide: BorderSide(color: Colors.indigo),
                               borderRadius: BorderRadius.circular(20),
                             ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.indigo),
                               borderRadius: BorderRadius.circular(20),
@@ -303,6 +323,10 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                             //prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.indigo),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
                               borderRadius: BorderRadius.circular(20),
                             ),
                             focusedBorder: OutlineInputBorder(

@@ -51,24 +51,13 @@ class _ZakatCalculationMethodScreenState
                 padding: EdgeInsets.only(top: 60.0),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor:
-                    MaterialStateProperty.all<Color>(buttonColor),
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Colors.blue), // Set the background color
                     foregroundColor: MaterialStateProperty.all<Color>(
-                      Colors.white,
-                    ),
-                    padding: MaterialStateProperty.all<EdgeInsets>(
-                      EdgeInsets.only(left: 100.0,right: 100),
-                    ),
-                    elevation: MaterialStateProperty.all<double>(5.0), // Add elevation
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0), // Add border radius
-                        side: BorderSide(color: Colors.blue), // Add border color
-                      ),
-                    ),
-                    shadowColor: MaterialStateProperty.all<Color>(
-                      Colors.grey.withOpacity(0.5), // Add shadow color
-                    ),
+                        Colors.white), // Set the text color
+                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                      EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
+                  ),
                   ),
                   onPressed: () {
                     setState(() {
@@ -89,22 +78,12 @@ class _ZakatCalculationMethodScreenState
               SizedBox(height : 25.0),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor:
-                  MaterialStateProperty.all<Color>(buttonColor),
-                  foregroundColor:
-                  MaterialStateProperty.all<Color>(Colors.white),
-                  padding: MaterialStateProperty.all<EdgeInsets>(
-                    EdgeInsets.only(left: 92.0,right: 92.0),
-                  ),
-                  elevation: MaterialStateProperty.all<double>(5.0), // Add elevation
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0), // Add border radius
-                      side: BorderSide(color: Colors.blue), // Add border color
-                    ),
-                  ),
-                  shadowColor: MaterialStateProperty.all<Color>(
-                    Colors.grey.withOpacity(0.5), // Add shadow color
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Colors.blue), // Set the background color
+                  foregroundColor: MaterialStateProperty.all<Color>(
+                      Colors.white), // Set the text color
+                  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                    EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
                   ),
                 ),
                 onPressed: () {

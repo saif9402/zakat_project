@@ -83,12 +83,21 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                               labelText: Locales.string(context, 'email'),
                               labelStyle: TextStyle(color: Colors.black),
                               prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
+
+                              errorBorder: OutlineInputBorder( // Remove error border to eliminate the horizontal line
+                                borderSide: BorderSide(color: Colors.red),
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
+                                borderSide: BorderSide(color: Colors.blue),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.red),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
+                                borderSide: BorderSide(color: Colors.blue),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
@@ -119,12 +128,20 @@ class _LoginScreenState extends BaseState<LoginScreen, LoginViewModel>
                               labelText: Locales.string(context, 'password'),
                               labelStyle: TextStyle(color: Colors.black),
                               prefixIcon: Icon(Icons.lock, color: Colors.lightBlueAccent),
+                              errorBorder: OutlineInputBorder( // Remove error border to eliminate the horizontal line
+                                borderSide: BorderSide(color: Colors.red),
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
+                                borderSide: BorderSide(color: Colors.blue),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.red),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
+                                borderSide: BorderSide(color: Colors.blue),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
