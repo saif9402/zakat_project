@@ -4,18 +4,12 @@ import 'second_screen.dart'; // Import the second screen
 
 class GoldCashScreen extends StatefulWidget {
   final double gold24Price;
-  final double gold22Price;
-  final double gold21Price;
-  final double gold18Price;
   final double silverPrice;
   final String currency;
 
   const GoldCashScreen({
     Key? key,
     required this.gold24Price,
-    required this.gold22Price,
-    required this.gold21Price,
-    required this.gold18Price,
     required this.silverPrice,
     required this.currency,
   }) : super(key: key);
@@ -86,7 +80,7 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               // hintText: 'Enter gold weight (leave empty if not applicable)',
-                              helperText: Locales.string(context, 'minimum_85_gram'),
+                              // helperText: Locales.string(context, 'minimum_85_gram'),
                             ),
                             keyboardType: TextInputType.number,
                           ),
@@ -114,7 +108,7 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               // hintText: 'Enter gold weight (leave empty if not applicable)',
-                              helperText: Locales.string(context, 'minimum_92_gram'),
+                              // helperText: Locales.string(context, 'minimum_92_gram'),
                             ),
                             keyboardType: TextInputType.number,
                           ),
@@ -146,7 +140,7 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               // hintText: 'Enter gold weight (leave empty if not applicable)',
-                              helperText: Locales.string(context, 'minimum_97_gram'),
+                              // helperText: Locales.string(context, 'minimum_97_gram'),
                             ),
                             keyboardType: TextInputType.number,
                           ),
@@ -174,7 +168,7 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               // hintText: 'Enter gold weight (leave empty if not applicable)',
-                              helperText: Locales.string(context, 'minimum_113_gram'),
+                              // helperText: Locales.string(context, 'minimum_113_gram'),
                             ),
                             keyboardType: TextInputType.number,
                           ),
@@ -206,7 +200,7 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               // hintText: 'Enter silver weight (leave empty if not applicable)',
-                              helperText: Locales.string(context, 'minimum_595_gram'),
+                              // helperText: Locales.string(context, 'minimum_595_gram'),
                             ),
                             keyboardType: TextInputType.number,
                           ),
@@ -225,48 +219,12 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
                             double silverWeight = double.tryParse(silverWeightController.text) ?? 0.0;
 
                             // Check conditions to navigate to the next screen
-                            if (gold24WeightController.text.isEmpty &&
-                                gold22WeightController.text.isEmpty &&
-                                gold21WeightController.text.isEmpty &&
-                                gold18WeightController.text.isEmpty &&
-                                silverWeightController.text.isEmpty) {
+
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => SecondScreen(
                                     gold24Price: widget.gold24Price,
-                                    gold22Price: widget.gold22Price,
-                                    gold21Price: widget.gold21Price,
-                                    gold18Price: widget.gold18Price,
-                                    silverPrice: widget.silverPrice,
-                                    currency: widget.currency,
-                                    gold24Weight: 0,
-                                    gold22Weight: 0,
-                                    gold21Weight: 0,
-                                    gold18Weight: 0,
-                                    silverWeight: 0,
-                                  ),
-                                ),
-                              );
-                            } else if ((gold24Weight < 85 && gold24WeightController.text.isNotEmpty) ||
-                                (gold22Weight < 92 && gold22WeightController.text.isNotEmpty) ||
-                                (gold21Weight < 97 && gold21WeightController.text.isNotEmpty) ||
-                                (gold18Weight < 113 && gold18WeightController.text.isNotEmpty) ||
-                                (silverWeight < 595 && silverWeightController.text.isNotEmpty)) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(Locales.string(context, 'please_enter_valid_weight')),
-                                ),
-                              );
-                            } else {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SecondScreen(
-                                    gold24Price: widget.gold24Price,
-                                    gold22Price: widget.gold22Price,
-                                    gold21Price: widget.gold21Price,
-                                    gold18Price: widget.gold18Price,
                                     silverPrice: widget.silverPrice,
                                     currency: widget.currency,
                                     gold24Weight: gold24Weight,
@@ -277,7 +235,7 @@ class _GoldCashScreenState extends State<GoldCashScreen> {
                                   ),
                                 ),
                               );
-                            }
+
                           },
                          style: ButtonStyle(
                            backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),

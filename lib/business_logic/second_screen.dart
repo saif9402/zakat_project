@@ -5,9 +5,7 @@ import 'package:my_zakat/business_logic/knowledge_base.dart';
 import '../home/home_screen.dart';
 class SecondScreen extends StatelessWidget {
   final double gold24Price;
-  final double gold22Price;
-  final double gold21Price;
-  final double gold18Price;
+
   final double silverPrice;
   final double silverWeight;
   final double gold24Weight;
@@ -19,9 +17,6 @@ class SecondScreen extends StatelessWidget {
   SecondScreen({
     Key? key,
     required this.gold24Price,
-    required this.gold22Price,
-    required this.gold21Price,
-    required this.gold18Price,
     required this.gold24Weight,
     required this.gold22Weight,
     required this.gold21Weight,
@@ -235,9 +230,6 @@ class SecondScreen extends StatelessWidget {
                     silverWeight: silverWeight,
                     cash: cash,
                     gold24Price: gold24Price,
-                    gold22Price: gold22Price,
-                    gold21Price: gold21Price,
-                    gold18Price: gold18Price,
                     silverPrice: silverPrice,
                     currency: currency,
                     apartments: apart,

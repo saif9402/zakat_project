@@ -11,16 +11,10 @@ class GoldSilverEntryScreen extends StatefulWidget {
 
 class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
   TextEditingController gold24Controller = TextEditingController();
-  TextEditingController gold22Controller = TextEditingController();
-  TextEditingController gold21Controller = TextEditingController();
-  TextEditingController gold18Controller = TextEditingController();
   TextEditingController silverController = TextEditingController();
   TextEditingController currencyController = TextEditingController();
 
   String? gold24ErrorText;
-  String? gold22ErrorText;
-  String? gold21ErrorText;
-  String? gold18ErrorText;
   String? silverErrorText;
   String? currencyErrorText;
 
@@ -53,8 +47,8 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                 SizedBox(height: 10.0),
 
 
-                Row(
-                  children: [
+
+
 
                     Expanded(
                       child: Container(
@@ -103,153 +97,17 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                           },
                         ),
                       ),
-                    ),
-                    SizedBox(width: 10.0),
-                    Expanded(
-                      child: Container(
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(
-                        //     color: Colors.black54,
-                        //     width: 3.0,
-                        //   ),
-                        //   borderRadius: BorderRadius.circular(
-                        //     12.0,
-                        //   ),
-                        // ),
-                        child: TextFormField(
-                          controller: gold22Controller,
-                          decoration: InputDecoration(
-                            labelText: Locales.string(context, 'gold_22'),
-                            labelStyle: TextStyle(color: Colors.black),
-                            // Set label text color to white
-                            errorText: gold22ErrorText,
-                            errorBorder: OutlineInputBorder( // Remove error border to eliminate the horizontal line
-                              borderSide: BorderSide(color: Colors.red),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            //prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) {
-                            setState(() {
-                              gold22ErrorText = value.isEmpty
-                                  ? Locales.string(context, 'please_enter_gold_value')
-                                  : null;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
+
+
+
                 ),
 
                 SizedBox(height: 10.0),
                 // Repeat the Row with the other text fields
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        child: TextFormField(
-                          controller: gold21Controller,
-                          decoration: InputDecoration(
-                            labelText: Locales.string(context, 'gold_21'),
-                            labelStyle: TextStyle(color: Colors.black),
-                            // Set label text color to white
-                            errorText: gold21ErrorText,
-                            errorBorder: OutlineInputBorder( // Remove error border to eliminate the horizontal line
-                              borderSide: BorderSide(color: Colors.red),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            //prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) {
-                            setState(() {
-                              gold21ErrorText = value.isEmpty
-                                  ? Locales.string(context, 'please_enter_gold_value')
-                                  : null;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10.0),
-                    Expanded(
-                      child: Container(
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(
-                        //     color: Colors.black54,
-                        //     width: 3.0,
-                        //   ),
-                        //   borderRadius: BorderRadius.circular(
-                        //     12.0,
-                        //   ),
-                        // ),
-                        child: TextFormField(
-                          controller: gold18Controller,
-                          decoration: InputDecoration(
-                            labelText: Locales.string(context, 'gold_18'),
-                            labelStyle: TextStyle(color: Colors.black),
-                            // Set label text color to white
-                            errorText: gold18ErrorText,
-                            errorBorder: OutlineInputBorder( // Remove error border to eliminate the horizontal line
-                              borderSide: BorderSide(color: Colors.red),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            //prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) {
-                            setState(() {
-                              gold18ErrorText = value.isEmpty
-                                  ? Locales.string(context, 'please_enter_gold_value')
-                                  : null;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 16.0),
-                Row(
-                  children: [
+
+                // SizedBox(height: 16.0),
+
+
                     Expanded(
                       child: Container(
                         // decoration: BoxDecoration(
@@ -345,29 +203,17 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                         ),
                       ),
                     ),
-                  ],
-                ),
+
+
                 SizedBox(height: 16.0),
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
                       if (gold24Controller.text.isEmpty ||
-                          gold22Controller.text.isEmpty ||
-                          gold21Controller.text.isEmpty ||
-                          gold18Controller.text.isEmpty ||
                           silverController.text.isEmpty ||
                           currencyController.text.isEmpty) {
                         setState(() {
                           gold24ErrorText = gold24Controller.text.isEmpty
-                              ? Locales.string(context, 'please_enter_gold_value')
-                              : null;
-                          gold22ErrorText = gold22Controller.text.isEmpty
-                              ? Locales.string(context, 'please_enter_gold_value')
-                              : null;
-                          gold21ErrorText = gold21Controller.text.isEmpty
-                              ? Locales.string(context, 'please_enter_gold_value')
-                              : null;
-                          gold18ErrorText = gold18Controller.text.isEmpty
                               ? Locales.string(context, 'please_enter_gold_value')
                               : null;
                           silverErrorText = silverController.text.isEmpty
@@ -385,9 +231,6 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                           MaterialPageRoute(
                             builder: (context) => GoldCashScreen(
                               gold24Price: double.tryParse(gold24Controller.text) ?? 0.0,
-                              gold22Price: double.tryParse(gold22Controller.text) ?? 0.0,
-                              gold21Price: double.tryParse(gold21Controller.text) ?? 0.0,
-                              gold18Price: double.tryParse(gold18Controller.text) ?? 0.0,
                               silverPrice: double.tryParse(silverController.text) ?? 0.0,
                               currency: currencyController.text,
                             ),

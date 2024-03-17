@@ -156,9 +156,6 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
                           MaterialPageRoute(
                             builder: (context) => GoldCashScreen(
                               gold24Price: double.parse(_gold24Controller),
-                              gold22Price: double.parse(_gold22Controller),
-                              gold21Price: double.parse(_gold21Controller),
-                              gold18Price: double.parse(_gold18Controller),
                               silverPrice: double.parse(_silverController),
                               currency: _currencyController,
                             ),

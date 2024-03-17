@@ -13,9 +13,6 @@ Future<double> calculateZakat({
   required double silverWeight,
   required double cash,
   required double gold24Price,
-  required double gold22Price,
-  required double gold21Price,
-  required double gold18Price,
   required double silverPrice,
   required double apartments,
   required double investments,
@@ -27,70 +24,21 @@ Future<double> calculateZakat({
 }) async {
   // Add your Zakat calculation logic here
   // For example:
-  double goldZakat = 0.0;
-  double silverZakat = 0.0;
-  double cashZakat = 0.0;
   double zakatAmount = 0.0;
+  double totalGold24Weight = ((gold24Weight * 24.0) +
+      (gold21Weight * 21.0) +
+      (gold22Weight * 22.0) +
+      (gold18Weight * 18.0)) / 24.0;
+  double silverToGold24 = (silverWeight * silverPrice) / gold24Price;
+  double cashToGold24 = (cash + apartments + inventory + investments)/gold24Price;
+  totalGold24Weight += silverToGold24 + cashToGold24;
+  double totalAfterDebts = totalGold24Weight - (debts/gold24Price);
 
-  //removing debts:
-  if(cash != 0 || investments !=0 || apartments !=0 || inventory !=0){
-    //cash, investments, apartment, inventory, debts
-    double total = cash + apartments + inventory + investments - debts;
-    double totalToGold = total / gold24Price;
-    bool l = totalToGold >= 85 ? true : false;
-    if(l){
-      cashZakat = total * 0.025;
-    }
-  }
-  else if(gold24Weight != 0){
-    gold24Weight -= (debts/gold24Price);
-  }
-  else if(gold22Weight != 0){
-    gold22Weight -= (debts/gold22Price);
-  }
-  else if(gold21Weight != 0){
-    gold21Weight -= (debts/gold21Price);
-  }
-  else if(gold18Weight != 0){
-    gold18Weight -= (debts/gold18Price);
-  }
-  else if(silverWeight != 0){
-    silverWeight -= (debts/silverPrice);
-  }
-
-  //gold 24 carat:
-  bool x = gold24Weight >= 85 ? true : false;
-  if(x){
-    goldZakat += (gold24Weight * 0.025) * gold24Price;
-  }
-
-  //gold 22 carat:
-  bool s = gold22Weight >= 92 ? true : false;
-  if(s){
-    goldZakat += (gold22Weight * 0.025) * gold22Price;
-  }
-
-  //gold 21 carat
-  bool y = gold21Weight >= 97 ? true : false;
-  if(y){
-    goldZakat += (gold21Weight * 0.025) * gold21Price;
-  }
-
-  //gold 18 carat
-  bool z = gold18Weight >= 113 ? true : false;
-  if(z){
-    goldZakat += (gold18Weight * 0.025) * gold18Price;
-  }
-
-  // silver
-  bool a = silverWeight >= 595 ? true : false;
-  if(a){
-    silverZakat = (silverWeight * 0.025) * silverPrice;
+  if(totalAfterDebts >= 85.0){
+    zakatAmount = totalAfterDebts * gold24Price * 0.025;
   }
 
 
-
-  zakatAmount = cashZakat + silverZakat + goldZakat;
 
   // Update total_zakat
   MyUser? currentUser = Provider.of<UserProvider>(context, listen: false).user;
