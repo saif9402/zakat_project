@@ -10,7 +10,6 @@ class PricesDisplayPage extends StatefulWidget {
 }
 
 class _PricesDisplayPageState extends State<PricesDisplayPage> {
-
   final TextEditingController _searchController = TextEditingController();
 
   List<String> _countryList = [];
@@ -26,7 +25,7 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
   @override
   void initState() {
     super.initState();
-     // Set the default value here
+    // Set the default value here
     _fetchCountryList();
     _searchController.addListener(() {
       _filterCountryList(_searchController.text);
@@ -49,8 +48,7 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
       results = _countryList;
     } else {
       results = _countryList
-          .where((country) =>
-          country.toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .where((country) => country.toLowerCase().contains(enteredKeyword.toLowerCase()))
           .toList();
     }
     setState(() {
@@ -116,6 +114,26 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
     });
   }
 
+  void _showCountryNotSelectedAlert() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Alert'),
+          content: Text('Please select a country from the list.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,24 +172,6 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
                     imagePath: 'assets/images/gold_logo.png',
                   ),
                   PriceCard(
-                    title: Locales.string(context, "gold_22_per_gram"),
-                    price: _gold22Controller,
-                    currency: _currencyController,
-                    imagePath: 'assets/images/gold_logo.png',
-                  ),
-                  PriceCard(
-                    title: Locales.string(context, "gold_21_per_gram"),
-                    price: _gold21Controller,
-                    currency: _currencyController,
-                    imagePath: 'assets/images/gold_logo.png',
-                  ),
-                  PriceCard(
-                    title: Locales.string(context, "gold_18_per_gram"),
-                    price: _gold18Controller,
-                    currency: _currencyController,
-                    imagePath: 'assets/images/gold_logo.png',
-                  ),
-                  PriceCard(
                     title: Locales.string(context, "silver_per_gram"),
                     price: _silverController,
                     currency: _currencyController,
@@ -183,15 +183,19 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => GoldCashScreen(
-                              gold24Price: double.parse(_gold24Controller),
-                              silverPrice: double.parse(_silverController),
-                              currency: _currencyController,
+                        if (_searchController.text.isEmpty) {
+                          _showCountryNotSelectedAlert();
+                        } else {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => GoldCashScreen(
+                                gold24Price: double.parse(_gold24Controller),
+                                silverPrice: double.parse(_silverController),
+                                currency: _currencyController,
+                              ),
                             ),
-                          ),
-                        );
+                          );
+                        }
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
