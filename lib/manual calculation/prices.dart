@@ -46,166 +46,116 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                 ),
                 SizedBox(height: 10.0),
 
-
-
-
-
-                    Expanded(
-                      child: Container(
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(
-                        //     color: Colors.black54,
-                        //     width: 3.0,
-                        //   ),
-                        //   borderRadius: BorderRadius.circular(
-                        //     12.0,
-                        //   ),
-                        // ),
-                        child: TextFormField(
-                          controller: gold24Controller,
-                          decoration: InputDecoration(
-                            labelText: Locales.string(context, 'gold_24'),
-                            labelStyle: TextStyle(color: Colors.black),
-                            // Set label text color to white
-                            errorText: gold24ErrorText,
-                            errorBorder: OutlineInputBorder( // Remove error border to eliminate the horizontal line
-                              borderSide: BorderSide(color: Colors.red),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            //prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          style: TextStyle(color: Colors.black),
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) {
-                            setState(() {
-                              gold24ErrorText = value.isEmpty
-                                  ? Locales.string(context, 'please_enter_gold_value')
-                                  : null;
-                            });
-                          },
-                        ),
+                Container(
+                  child: TextFormField(
+                    controller: gold24Controller,
+                    decoration: InputDecoration(
+                      labelText: Locales.string(context, 'gold_24'),
+                      labelStyle: TextStyle(color: Colors.black),
+                      errorText: gold24ErrorText,
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.circular(12.0),
                       ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.indigo),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.indigo),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    style: TextStyle(color: Colors.black),
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      setState(() {
+                        gold24ErrorText = value.isEmpty
+                            ? Locales.string(context, 'please_enter_gold_value')
+                            : null;
+                      });
+                    },
+                  ),
+                ),
+                SizedBox(height: 20.0),
 
+                Container(
+                  child: TextFormField(
+                    controller: silverController,
+                    decoration: InputDecoration(
+                      labelText: Locales.string(context, 'silver'),
+                      labelStyle: TextStyle(color: Colors.black),
+                      errorText: silverErrorText,
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.indigo),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.indigo),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      setState(() {
+                        silverErrorText = value.isEmpty
+                            ? Locales.string(context, 'please_enter_silver_value')
+                            : null;
+                      });
+                    },
+                  ),
+                ),
+                SizedBox(height: 20.0),
 
-
+                Container(
+                  child: TextFormField(
+                    controller: currencyController,
+                    decoration: InputDecoration(
+                      labelText: Locales.string(context, 'currency'),
+                      labelStyle: TextStyle(color: Colors.black),
+                      errorText: currencyErrorText,
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.indigo),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.indigo),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    keyboardType: TextInputType.text,
+                    onChanged: (value) {
+                      setState(() {
+                        currencyErrorText = value.isEmpty
+                            ? Locales.string(context, 'please_enter_currency')
+                            : null;
+                      });
+                    },
+                  ),
                 ),
 
-                SizedBox(height: 10.0),
-                // Repeat the Row with the other text fields
+                SizedBox(height: 40.0),
 
-                // SizedBox(height: 16.0),
-
-
-                    Expanded(
-                      child: Container(
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(
-                        //     color: Colors.black54,
-                        //     width: 3.0,
-                        //   ),
-                        //   borderRadius: BorderRadius.circular(
-                        //     12.0,
-                        //   ),
-                        // ),
-                        child: TextFormField(
-                          controller: silverController,
-                          decoration: InputDecoration(
-                            labelText: Locales.string(context, 'silver'),
-                            labelStyle: TextStyle(color: Colors.black),
-                            // Set label text color to white
-                            errorText: silverErrorText,
-                            errorBorder: OutlineInputBorder( // Remove error border to eliminate the horizontal line
-                              borderSide: BorderSide(color: Colors.red),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            //prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) {
-                            setState(() {
-                              silverErrorText = value.isEmpty
-                                  ? Locales.string(context, 'please_enter_silver_value')
-                                  : null;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10.0),
-                    Expanded(
-                      child: Container(
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(
-                        //     color: Colors.black54,
-                        //     width: 3.0,
-                        //   ),
-                        //   borderRadius: BorderRadius.circular(
-                        //     12.0,
-                        //   ),
-                        // ),
-                        child: TextFormField(
-                          controller: currencyController,
-                          decoration: InputDecoration(
-                            labelText: Locales.string(context, 'currency'),
-                            labelStyle: TextStyle(color: Colors.black),
-                            // Set label text color to white
-                            errorText: currencyErrorText,
-                            errorBorder: OutlineInputBorder( // Remove error border to eliminate the horizontal line
-                              borderSide: BorderSide(color: Colors.red),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            //prefixIcon: Icon(Icons.email, color: Colors.lightBlueAccent),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          keyboardType: TextInputType.text,
-                          onChanged: (value) {
-                            setState(() {
-                              currencyErrorText = value.isEmpty
-                                  ? Locales.string(context, 'please_enter_currency')
-                                  : null;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-
-
-                SizedBox(height: 16.0),
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
@@ -240,11 +190,11 @@ class _GoldSilverEntryScreenState extends State<GoldSilverEntryScreen> {
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white), // Set text color to white
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                     ),
                     child: Text(
                       Locales.string(context, 'next'),
-                      style: TextStyle(color: Colors.white), // Set text color to white
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
