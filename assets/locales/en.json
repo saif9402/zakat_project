@@ -92,12 +92,20 @@
   "number_of_family": "Number of family members: ",
   "elfitr_amount": "Zakat Elfitr Amount",
   "the_zakat_amount": "The Zakat Elfitr amount for ",
-  "familty_members_is": "family members is ",
+  "family_members_is": "family members is ",
   "kg": "Kg",
 
   "choose_calculation_method": "Choose calculation method",
 
   "enter_gold_price": "Enter gold and silver prices",
   "enter_gold_weights": "Enter gold and silver weights in grams:",
-  "enter_money_details": "Enter money details"
+  "enter_money_details": "Enter money details",
+
+
+  "alert": "Alert",
+  "please_select_country_from_list": "Please select a country from the list.",
+  "search_country_list": "Search Country",
+  "search_and_select_country": "Search and select a country",
+  "last_updated": "Last updated: "
+
 }

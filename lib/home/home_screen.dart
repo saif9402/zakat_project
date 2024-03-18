@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_locales/flutter_locales.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intl/intl.dart';
 import 'package:my_zakat/provider/my_user.dart';
 import 'package:provider/provider.dart';
 import '../choosing/choosing.dart';
@@ -33,6 +34,10 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
   Widget build(BuildContext context) {
     MyUser? currentUser =
         Provider.of<UserProvider>(context, listen: false).user;
+
+    DateTime dateTime = currentUser?.last_time ?? DateTime.now(); // Replace DateTime.now() with your actual DateTime object
+    String formattedDateTime = formatDateTime(dateTime);
+
 
     // Get the screen width and height
     final screenWidth = MediaQuery.of(context).size.width;
@@ -101,7 +106,7 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
                           color: Colors.white,
                           width: 1.0,
                         ), // Set the background color to transparent
-                        borderRadius: BorderRadius.circular(30), // Optional: Add border radius if needed
+                        borderRadius: BorderRadius.circular(18), // Optional: Add border radius if needed
                         // boxShadow: [
                         //   BoxShadow(
                         //     color: Colors.grey.withOpacity(0.5), // Add shadow if desired
@@ -127,13 +132,18 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
                             ),
                             SizedBox(height: screenHeight * 0.01), // 1% of screen height space
                             Text(
-                              '${Locales.string(context, 'mr')} ${currentUser?.fName} ${currentUser?.lName}',
+                              '${Locales.string(context, 'mr')} ${currentUser?.fName??""} ${currentUser?.lName??""}',
                               style: TextStyle(fontSize: 20, color: Colors.black), // 4% of screen width font size
                             ),
                             SizedBox(height: screenHeight * 0.01), // 1% of screen height space
                             Text(
-                              '${Locales.string(context, 'total')}: ${currentUser?.total_zakat.toStringAsFixed(2)}',
+                              '${Locales.string(context, 'total')}: ${currentUser?.total_zakat.toStringAsFixed(2)??""}',
                               style: TextStyle(fontSize: 20, color: Colors.black), // 4% of screen width font size
+                            ),
+                            SizedBox(height: screenHeight * 0.01), // 1% of screen height space
+                            Text(
+                              '${Locales.string(context, 'last_updated')}${formattedDateTime??"-"}',
+                              style: TextStyle(fontSize: 18, color: Colors.black), // 4% of screen width font size
                             ),
                           ],
                         ),
@@ -216,6 +226,13 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
       ),
     );
   }
+
+  String formatDateTime(DateTime dateTime){
+    final DateFormat formatter = DateFormat('dd-MM-yyyy');
+    final String formattedDateTime = formatter.format(dateTime);
+    return formattedDateTime;
+  }
+
 }
 
 class HomeViewModel extends BaseViewModel<HomeNavigator> {}

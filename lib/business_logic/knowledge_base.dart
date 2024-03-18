@@ -45,6 +45,7 @@ Future<double> calculateZakat({
   if (currentUser != null) {
     double updatedTotalZakat = zakatAmount;
     currentUser.total_zakat = updatedTotalZakat;
+    currentUser.last_time = DateTime.now();
     await DataBaseUtils.updateUser(currentUser);
     Provider.of<UserProvider>(context, listen: false).user = currentUser;
 

@@ -92,13 +92,20 @@
 
   "elfitr_amount": "قيمة زكاة الفطر",
   "the_zakat_amount": "قيمة زكاة الفطر لـ",
-  "familty_members_is": "أفراد يساوي ",
+  "family_members_is": "أفراد يساوي",
   "kg": "كيلوجرام",
   "choose_calculation_method": "اختر طريقة الحساب",
   "enter_gold_price": "أدخل أسعار الذهب والفضة",
 
   "enter_gold_weights": "أدخل أوزان الذهب والفضة بالجرام:",
 
-  "enter_money_details": "أدخل تفاصيل المال"
+  "enter_money_details": "أدخل تفاصيل المال",
+
+  "alert": "تنبيه",
+  "please_select_country_from_list": "من فضلك اختر دولة من القائمة.",
+  "search_country_list": "ابحث",
+  "search_and_select_country": "اختر دولة",
+  "last_updated": "آخر تحديث: "
+
 
 }
