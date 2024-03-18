@@ -96,11 +96,12 @@ class _HomeScreenState extends BaseState<HomeScreen, HomeViewModel>
                     // Welcome Card
                     Container(
                       decoration: BoxDecoration(
+                        color: Colors.white54,
                         border: Border.all(
-                          color: Colors.blue,
+                          color: Colors.white,
                           width: 1.0,
                         ), // Set the background color to transparent
-                        borderRadius: BorderRadius.circular(20), // Optional: Add border radius if needed
+                        borderRadius: BorderRadius.circular(30), // Optional: Add border radius if needed
                         // boxShadow: [
                         //   BoxShadow(
                         //     color: Colors.grey.withOpacity(0.5), // Add shadow if desired
