@@ -1,3 +1,5 @@
+import 'package:flutter/src/material/time.dart';
+
 class MyUser {
   static const String collectionName = 'users';
   String id;
@@ -6,6 +8,7 @@ class MyUser {
   String userName;
   String email;
   double total_zakat;
+
 
   MyUser(
       {required this.id,
@@ -24,6 +27,7 @@ class MyUser {
           email: json['email'] as String,
           total_zakat: json['total_zakat'] ?? 0,
         );
+
 
   Map<String, dynamic> toJson() {
     return {
