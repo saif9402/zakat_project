@@ -67,7 +67,7 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
               child: TextField(
                 onChanged: _filterCountryList,
                 decoration: InputDecoration(
-                  labelText: 'Search Country',
+                  labelText: Locales.string(context, 'search_country_list'),
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderSide: BorderSide(color: Theme.of(context).primaryColor),
@@ -119,14 +119,14 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Alert'),
-          content: Text('Please select a country from the list.'),
+          title: Text('${Locales.string(context, 'alert')}'),
+          content: Text('${Locales.string(context, 'please_select_country_from_list')}'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: Text(Locales.string(context, 'ok')),
             ),
           ],
         );
@@ -160,7 +160,7 @@ class _PricesDisplayPageState extends State<PricesDisplayPage> {
                       readOnly: true,
                       onTap: _showCountryPicker,
                       decoration: InputDecoration(
-                        labelText: 'Search and select a country',
+                        labelText: Locales.string(context, 'search_and_select_country'),
                         suffixIcon: Icon(Icons.search),
                       ),
                     ),

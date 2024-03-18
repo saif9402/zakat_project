@@ -49,7 +49,9 @@ class _ZakatElfitrPageState extends State<ZakatElfitrPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(Locales.string(context, 'elfitr_amount')),
-          content: Text('${Locales.string(context, 'the_zakat_amount')} $numberOfFamilyMembers ${Locales.string(context, 'family_members_is')} $zakatAmount ${Locales.string(context, 'kg')}.'),
+          content: Text('''
+${Locales.string(context, 'the_zakat_amount')} $numberOfFamilyMembers 
+${Locales.string(context, 'family_members_is')} $zakatAmount ${Locales.string(context, 'kg')}.'''),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
