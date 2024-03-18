@@ -22,7 +22,6 @@ class MyUser {
           lName: json['lName'] as String,
           userName: json['userName'] as String,
           email: json['email'] as String,
-          Date: json['Date']as String,
           total_zakat: json['total_zakat'] ?? 0,
         );
 
